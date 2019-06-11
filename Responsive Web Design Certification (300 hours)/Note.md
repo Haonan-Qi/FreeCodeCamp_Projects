@@ -173,7 +173,6 @@
     - Finally, you can write CSS rules in an external style sheet, then reference that file in the HTML document. 
 
 ``The idea behind CSS is that you can use a selector to target an HTML element in the DOM (Document Object Model) and then apply a variety of attributes to that element to change the way it is displayed on the page.``
-
 ### Change the Color of Text
 - inline styles
 `<h2 style="color: blue;">CatPhotoApp</h2>`
@@ -545,4 +544,395 @@
             }
         }
     </style>
+```
+
+```html
+    
+```
+
+## Applied Visual Design
+## Introduction to the Applied Visual Design Challenges
+- Visual Design in web development is a broad topic. It combines typography, color theory, graphics, animation, and page layout to help deliver a site's message. The definition of good design is a well-discussed subject, with many books on the theme.
+
+- At a basic level, most web content provides a user with information. The visual design of the page can influence its presentation and a user's experience. In web development, HTML gives structure and semantics to a page's content, and CSS controls the layout and appearance of it.
+
+- This section covers some of the basic tools developers use to create their own visual designs
+## Create Visual Balance Using the text-align Property
+- text-align: justify; 
+    - causes all lines of text except the last line to meet the left and right edges of the line box.
+- text-align: center; 
+    - centers the text
+- text-align: right; 
+   - right-aligns the text
+- And text-align: left; 
+    - (the default) left-aligns the text.
+## Adjust the Width of an Element Using the width Property
+```html
+    width: em rm mm;
+```
+## Adjust the Height of an Element Using the height Property
+```html
+    height: ;
+```
+## Use the strong Tag to Make Text Bold
+```html
+    <strong></strong>
+    font-weight:bold;
+```
+## Use the u Tag to Underline Text
+```html
+    <u></u>
+    text-decoration: underline;
+```
+## Use the em Tag to Italicize Text
+```html
+    <em></em>
+    font-style: italic;
+```
+## Use the s Tag to Strikethrough Text
+```html
+    text-decoration: line-through;
+    <s></s>
+```
+## Create a Horizontal Line Using the hr Element
+```html
+    <hr/> /*this is a self-closing tag*/
+```
+## Adjust the background-color Property of Text
+```html
+    background-color: rgba(45, 45, 45, 0.1)
+```
+## Adjust the Size of a Header Versus a Paragraph Tag
+```html
+    font-size
+```
+## Add a box-shadow to a Card-like Element
+```html
+    box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
+```
+## Decrease the Opacity of an Element
+```html
+    opacity 0 mean full opacity 
+```
+## Use the text-transform Property to Make Text Uppercase
+| Value  |  Result |
+|---|---|
+|lowercase|	"transform me"|
+|uppercase|	"TRANSFORM ME"|
+|capitalize|	"Transform Me"|
+| initial	 |   Use the default value   
+|inherit	|Use the text-transform value from the parent element|
+|none|	Default: Use the original text|
+## Set the font-size for Multiple Heading Elements
+```html
+    /*idea here is that h2 only should be used to identify level not the actual size*/
+```
+## Set the font-weight for Multiple Heading Elements
+```html
+    same as above
+```
+## Set the font-size of Paragraph Text
+```html
+    font-size
+```
+## Set the line-height of Paragraphs
+```html
+    
+```
+## Adjust the Hover State of an Anchor Tag
+```html
+    a:hover {
+        color: red;
+    }
+```
+## Change an Element's Relative Position
+- CSS treats each HTML element as its own box, which is usually referred to as the CSS Box Model. Block-level items automatically start on a new line (think headings, paragraphs, and divs) while inline items sit within surrounding content (like images or spans). The default layout of elements in this way is called the normal flow of a document, but CSS offers the position property to **override it**.
+
+- When the position of an element is set to relative, **it allows you to specify how CSS should move it relative to its current position in the normal flow of the page**. **It pairs with the CSS offset properties of left or right, and top or bottom**. These say how many pixels, percentages, or ems to move the item away from where it is normally positioned. The following example moves the paragraph 10 pixels away from the bottom:
+```html
+    p {
+        position: relative;
+        bottom: 10px;
+    }
+```
+- Changing an element's position to relative does not remove it from the normal flow - **other elements around it still behave as if that item were in its default position.**
+
+- Positioning gives you a lot of flexibility and power over the visual layout of a page. It's good to remember that no matter the position of elements, the underlying HTML markup should be organized and make sense when read from top to bottom. This is how users with visual impairments (who rely on assistive devices like screen readers) access your content.
+## Move a Relatively Positioned Element with CSS Offsets
+- The CSS **offsets** of **top or bottom, and left or right** tell the browser how far to offset an item **relative** to where it would sit in **the normal flow of the document**.
+```html
+    
+```
+## Lock an Element to its Parent with Absolute Positioning
+- The next option for the CSS position property is absolute, which locks the element in place relative to its **parent container**. Unlike the relative position, **this removes the element from the normal flow of the document**, so surrounding items **ignore it**. The CSS offset properties (top or bottom and left or right) are used to adjust the position.
+
+- One nuance with absolute positioning is that it will be locked relative to its **closest positioned ancestor**. If you forget to 
+- **add a position rule to the parent item**, (**this is typically done using position: relative;)**, 
+- **the browser will keep looking up the chain and ultimately default to the body tag.**
+```html
+    
+```
+## Lock an Element to the Browser Window with Fixed Positioning
+- The next layout scheme that CSS offers is the fixed position, which is a type of absolute positioning that locks an element relative to the browser window.
+- One key difference between the fixed and absolute positions is that an element with a fixed position won't move **when the user scrolls.**
+```html
+    
+```
+## Push Elements Left or Right with the float Property
+- The next positioning tool does not actually use position, but sets the float property of an element. **Floating elements are removed from the normal flow of a document** and pushed to either the left or right of their containing parent element. It's commonly used with the **width** property to specify how much horizontal space the floated element requires.
+```html
+    float:right;
+```
+## Change the Position of Overlapping Elements with the z-index Property
+- It must be an integer (i.e. a whole number and not a decimal), and **higher values for the z-index** property of an element **move it higher in the stack** than those with lower values.
+```html
+    
+```
+## Center an Element Horizontally Using the margin Property
+ - Images are inline elements by default, but **can be changed to block elements** when you set the **display property to block**.
+```html
+    
+```
+## Learn about Complementary Colors
+- Color theory and its impact on design is a deep topic and only the basics are covered in the following challenges. **On a website, color can draw attention to content, evoke emotions, or create visual harmony. Using different combinations of colors can really change the look of a website, and a lot of thought can go into picking a color palette that works with your content.**
+- The color wheel is a useful tool to visualize how colors relate to each other - **it's a circle where similar hues are neighbors and different hues are farther apart.When two colors are opposite each other on the wheel, they are called complementary colors.** They have the characteristic that if they are **combined,** they "cancel" each other out and create a gray color. However, when placed side-by-side, these colors appear more vibrant and produce a strong visual contrast.
+- visual impairments consideration
+
+```html
+    red (#FF0000) and cyan (#00FFFF)
+    green (#00FF00) and magenta (#FF00FF)
+    blue (#0000FF) and yellow (#FFFF00)
+```
+## Learn about Tertiary Colors
+- Red (R), green (G), and blue (B) are called primary colors.   
+- Mixing two primary colors creates the secondary colors cyan (G + B), magenta (R + B) and yellow (R + G). 
+    - These secondary colors happen to be the complement to the primary color not used in their creation, and are opposite to that primary color on the color wheel. 
+- Tertiary colors are the result of combining **a primary color** with **one of its secondary color neighbors.** For example, red (primary) and yellow (secondary) make orange. This adds six more colors to a simple color wheel for a total of twelve.
+- There are various methods of selecting different colors that result in a harmonious combination in design. One example that can use tertiary colors is called the split-complementary color scheme. 
+    - This scheme starts with a base color, then pairs it with the two colors that are adjacent to its complement. The three colors provide strong visual contrast in a design, but are more subtle than using two complementary colors.
+    - This color scheme has the same strong visual contrast as the complementary color scheme, but has **less tension**.
+```html
+    
+```
+## Adjust the Color of Various Elements to Complementary Colors
+- The Complementary Colors challenge showed that opposite colors on the color wheel can make each other appear more vibrant when placed side-by-side. However, the strong visual contrast can be jarring if it's overused on a website, and can sometimes make text harder to read if it's placed on a complementary-colored background. In practice, one of the colors is usually dominant and the complement is used to bring visual attention to certain content on the page
+## Adjust the Hue of a Color
+- **Hue is what people generally think of as 'color'**. If you picture a spectrum of colors starting with red on the left, moving through green in the middle, and blue on right, the hue is where a color fits along this line. In hsl(), hue uses a color wheel concept instead of the spectrum, where the angle of the color on the circle is given as a value between **0 and 360**.
+- **Saturation is the amount of gray in a color**. A fully saturated color has no gray in it, and a minimally saturated color is almost completely gray. This is given as a percentage with **100%** being fully saturated.
+- **Lightness is the amount of white or black in a color**. A percentage is given ranging from **0%** (black) to **100%**(white), where 50% is the normal color.
+## Adjust the Tone of a Color
+- The hsl() option in CSS also makes it easy to adjust the tone of a color. Mixing white with a pure hue creates a tint of that color, and adding black will make a shade. Alternatively, a tone is produced by adding gray or by both tinting and shading. Recall that the 's' and 'l' of hsl() stand for saturation and lightness, respectively. The saturation percent changes the amount of gray and the lightness percent determines how much white or black is in the color. This is useful when you have a base hue you like, but need different variations of it.
+```html
+    
+```
+## Create a Gradual CSS Linear Gradient
+```html
+    background: linear-gradient(90deg, red, yellow, rgb(204, 204, 255));
+```
+## Use a CSS Linear Gradient to Create a Striped Element
+```html
+    background: repeating-linear-gradient(
+      90deg,
+      yellow 0px,
+      blue 40px,
+      green 40px,
+      red 80px
+    );
+```
+## Create Texture by Adding a Subtle Pattern as a Background Image
+```html
+    background:  url(https://i.imgur.com/MJAkxbh.png)
+```
+## Use the CSS Transform scale Property to Change the Size of an Element
+```html
+    p {
+        transform:scale(2);
+    }
+```
+## Use the CSS Transform scale Property to Scale an Element on Hover
+```html
+    p:hover {
+        transform: scale(2.1);
+    }
+```
+## Use the CSS Transform Property skewX to Skew an Element Along the X-Axis
+```html
+    p {
+     transform: skewX(-32deg);
+    }
+```
+## Use the CSS Transform Property skewY to Skew an Element Along the Y-Axis
+```html
+    p {
+        transform: skewX(-32deg);
+    }
+```
+## Create a Graphic Using CSS
+```html
+    <style>
+        .heart {
+        position: absolute;
+        margin: auto;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: pink;
+        height: 50px;
+        width: 50px;
+        transform: ;
+        }
+        .heart::after {
+        background-color: blue;
+        content: "";
+        border-radius: 25%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        top: 0px;
+        left: 25px;
+        }
+        .heart::before {
+        content: "";
+        background-color: black;
+        border-radius: 50%;
+        position: absolute;
+        width: 50px;
+        height: 50px;
+
+        left: 0px;
+    }
+</style>
+```
+## Create a More Complex Shape Using CSS and HTML
+```html
+    
+```
+## Learn How the CSS @keyframes and animation Properties Work
+- animation-name sets the name of the animation, which is later used by @keyframes to tell CSS which rules go with which animations.
+- animation-duration sets the length of time for the animation.
+- @keyframes is how to specify exactly what happens within the animation over the duration. This is done by giving CSS properties for specific "frames" during the animation, with percentages ranging from 0% to 100%. If you compare this to a movie, the CSS properties for 0% is how the element displays in the opening scene. The CSS properties for 100% is how the element appears at the end, right before the credits roll. Then CSS applies the magic to transition the element over the given duration to act out the scene. Here's an example to illustrate the usage of @keyframes and the animation properties:
+```css
+    #anim {
+        animation-name: colorful;
+        animation-duration: 3s;
+    }
+    @keyframes colorful {
+        0% {
+            background-color: blue;
+        }
+        100% {
+            background-color: yellow;
+        }
+    }
+```
+## Use CSS Animation to Change the Hover State of a Button
+```css
+    <style>
+    img:hover {
+        animation-name: width;
+        animation-duration: 500ms;
+    }
+
+    @keyframes width {
+        100% {
+        width: 40px;
+        }
+    }
+</style>
+```
+## Modify Fill Mode of an Animation
+```css
+    /*That's great, but it doesn't work right yet. Notice how the animation resets after 500ms has passed, causing the button to revert back to the original color. You want the button to stay highlighted.*/
+    button:hover {
+        animation-name: background-color;
+        animation-duration: 500ms;
+        /* add your code below this line */
+        animation-fill-mode: forwards;
+        /* add your code above this line */
+    }
+```
+## Create Movement Using CSS Animation
+```css
+    #rect {
+    animation-name: rainbow;
+    animation-duration: 4s;
+    }
+
+    @keyframes rainbow {
+    0% {
+        background-color: blue;
+        top: 0px;
+        
+    }
+    50% {
+        background-color: green;
+        top: 50px;
+        
+    }
+    100% {
+        background-color: yellow;
+        top: 0px;
+        
+    }
+```
+## Create Visual Direction by Fading an Element from Left to Right
+```css
+    @keyframes fade {
+        50% {
+        left: 60%;
+        opacity: 0.1;
+        }
+    } 
+```
+## Animate Elements Continually Using an Infinite Animation Count
+```css
+    #ball {
+        width: 100px;
+        height: 100px;
+        margin: 50px auto;
+        position: relative;
+        border-radius: 50%;
+        background: linear-gradient(
+        35deg,
+        #ccffff,
+        #ffcccc
+        );
+        animation-name: bounce;
+        animation-duration: 1s;
+        animation-iteration-count: 5;
+    }
+```
+## Make a CSS Heartbeat using an Infinite Animation Count
+```html
+    animation-iteration-count:infinite;
+    infinite ~== finite
+```
+## Animate Elements at Variable Rates
+```html
+    same element sam duration time 
+    same state at different position
+```
+## Animate Multiple Elements at Variable Rates
+```html
+    Same stat different durantion
+    during
+    duration
+```
+## Change Animation Timing with Keywords
+```html
+    animation-duration:
+    animation-timing-function:
+```
+## Learn How Bezier Curves Work
+```html
+    animation-timing-function: cubic-bezier(0.25, 0.25, 0.75, 0.75);
+```
+## Use a Bezier Curve to Move a Graphic
+```html
+    
+```
+## Make Motion More Natural Using a Bezier Curve
+```html
+    
 ```
