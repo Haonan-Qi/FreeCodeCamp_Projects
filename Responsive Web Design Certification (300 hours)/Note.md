@@ -843,7 +843,7 @@
 ```
 ### Modify Fill Mode of an Animation
 ```css
-    /*That's great, but it doesn't work right yet. Notice how the animation resets after 500ms has passed, causing the button to revert back to the original color. You want the button to stay highlighted.*/
+    /*That's great, but it doesn't work right yet. Notice how the animation resets after 500ms has ### , causing the button to revert back to the original color. You want the button to stay highlighted.*/
     button:hover {
         animation-name: background-color;
         animation-duration: 500ms;
@@ -934,5 +934,162 @@
 ```
 ### Make Motion More Natural Using a Bezier Curve
 ```html
+
     
 ```
+
+## Applied Accessibility
+### Introduction to the Applied Accessibility Challenges
+- "Accessibility" generally means having web content and **a user interface that can be understood, navigated, and interacted with by a broad audience**. This includes people with **visual, auditory, mobility, or cognitive disabilities**. Websites should be open and accessible to everyone, regardless of a user's abilities or resources. **Some users rely on assistive technology such as a screen reader or voice recognition software.** Other users may be able to navigate through a site only using a keyboard. Keeping the needs of various users in mind when developing your project can go a long way towards creating an open web. Here are three general concepts this section will explore throughout the following challenges:
+
+- have well-organized code that uses appropriate markup
+
+- ensure text alternatives exist for non-text and visual content
+
+- create an easily-navigated page that's keyboard-friendly
+
+Having accessible web content is an ongoing challenge. A great resource for your projects going forward is **the W3 Consortium's Web Content Accessibility Guidelines (WCAG)**. They set the international standard for accessibility and provide a number of criteria you can use to check your work.
+
+### Add a Text Alternative to Images for Visually Impaired Accessibility
+`<img src="importantLogo.jpeg" alt="Company logo">`
+### Know When Alt Text Should be Left Blank
+- In situations when an image is already explained with text content, or does not add meaning to a page, the img still needs an alt attribute, but it can be set to an empty string.
+- Background images usually fall under the 'decorative' label as well. 
+### Use Headings to Show Hierarchical Relationships of Content
+- Screen readers can be set to read only the headings on a page so the user gets a summary. 
+- This means it is important for the heading tags in your markup to have semantic meaning and relate to each other, not be picked merely for their size values.
+- Semantic meaning means that the tag you use around content indicates the type of information it contains.
+### Jump Straight to the Content Using the main Element
+- **HTML5** introduced a number of new elements that give developers more options while also incorporating accessibility features. These tags include **main, header, footer, nav, article, and section**, among others.
+### Wrap Content in the article Element
+- Article is a sectioning element, and is used to **wrap independent, self-contained content**. The tag works well with **blog entries, forum posts, or news articles**.
+- Ask yourself if you removed all surrounding context, would that content still make sense?
+    - An RSS feed is a simple method for staying informed about news and information updates on a website. 
+- Note about section and div
+    - The section element is also new with HTML5, and has a slightly different semantic meaning than article. 
+    - An article is for standalone content
+    - A section is for grouping thematically related content. They can be used within each other, as needed. 
+        - For example, if a book is the article, then each chapter is a section. When there's no relationship between groups of content, then use a div.
+        ``` html
+            <div> - groups content
+            <section> - groups related content
+            <article> - groups independent, self-contained content
+            <div>
+                <atricle>
+                    <section>
+                    </section>
+                </article>
+            </div>
+        ```
+### Make Screen Reader Navigation Easier with the header Landmark
+- The next HTML5 element that adds semantic meaning and improves accessibility is the header tag. It's used to wrap **introductory information or navigation links for its parent tag**, and works well around content that's **repeated at the top on multiple pages.**
+    - **header** is meant for use in the body tag of your HTML document. This is **different** than the **head** element, which contains the page's title, meta information, etc.
+### Make Screen Reader Navigation Easier with the nav Landmark
+- The nav element is another HTML5 item with the embedded landmark feature for easy screen reader navigation. This tag is meant to **wrap around the main navigation links in your page**.
+- If there are repeated site links at the **bottom of the page**, it isn't necessary to markup those with a nav tag as well. Using a **footer** (covered in the next challenge) is sufficient.
+### Make Screen Reader Navigation Easier with the footer Landmark
+- Similar to header and nav, the footer element has a built-in landmark feature that allows assistive devices to quickly navigate to it.
+- It's primarily used to contain **copyright information or links to related documents** that usually **sit at the bottom of a page**.
+### Improve Accessibility of Audio Content with the audio Element
+- HTML5's **audio element** gives **semantic meaning** when it wraps sound or audio stream content in your markup. Audio content also **needs a text alternative to be accessible to people who are deaf or hard of hearing.** This can be done with nearby text on the page or a link to a transcript
+- The audio tag supports the **controls** attribute.
+```html
+    <audio id="meowClip" controls>
+        <source src="audio/meow.mp3" type="audio/mpeg" />
+        <source src="audio/meow.ogg" type="audio/ogg" />
+    </audio>
+```
+- Note
+- Multimedia content usually has both visual and auditory components. It needs **synchronized captions and a transcript so users with visual and/or auditory impairments can access it.** Generally, a web developer is not responsible for creating the captions or transcript, but needs to know to include them.
+### Improve Chart Accessibility with the figure Element
+- HTML5 introduced the figure element, along with the related figcaption. Used together, these items wrap a visual representation (like an image, diagram, or chart) along with its caption. This gives a two-fold accessibility boost by both semantically grouping related content, and providing a **text alternative** that **explains the figure.**
+```html
+    <figure>
+        <img src="roundhouseDestruction.jpeg" alt="Photo of Camper Cat executing a roundhouse kick">
+        <br>
+        <figcaption>
+            Master Camper Cat demonstrates proper form of a roundhouse kick.
+        </figcaption>
+    </figure>
+```
+### Improve Form Field Accessibility with the label Element
+- for -> ID
+```html
+    <form>
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name">
+    </form>
+```
+### Wrap Radio Buttons in a fieldset Element for Better Accessibility
+- The fieldset wrapper and legend tag are not necessary when the choices are self-explanatory, like a gender selection. Using a label with the for attribute for each radio button is sufficient.
+```html
+    <form>
+        <fieldset>
+            <legend>Choose one of these three items:</legend>
+            <input id="one" type="radio" name="items" value="one">
+            <label for="one">Choice One</label><br>
+            <input id="two" type="radio" name="items" value="two">
+            <label for="two">Choice Two</label><br>
+            <input id="three" type="radio" name="items" value="three">
+            <label for="three">Choice Three</label>
+        </fieldset>
+    </form>
+```
+### Add an Accessible Date Picker
+```html
+    <label for="input1">Enter a date:</label>
+    <input type="date" id="input1" name="input1">
+```
+### Standardize Times with the HTML5 datetime Attribute
+```html
+    <p>Master Camper Cat officiated the cage match between Goro and Scorpion <time datetime="2013-02-13">last Wednesday</time>, which ended in a draw.</p>
+```
+### Make Elements Only Visible to a Screen Reader by Using Custom CSS
+- Camper Cat created a really cool stacked bar chart for his training page, and put the data into a table for his visually impaired users. The
+```css
+    .sr-only {
+        position: absolute;
+        left: -10000px;
+        width: 1px;
+        height: 1px;
+        top: auto;
+        overflow: hidden;
+    }
+```
+### Improve Readability with High Contrast Text
+- Low contrast between the **foreground** and **background** colors can make text difficult to read. Sufficient contrast improves the readability of your content, but **what exactly does "sufficient" mean**?
+
+- The Web Content Accessibility Guidelines (WCAG) recommend **at least a 4.5 to 1 contrast ratio for normal text**. The ratio is calculated by comparing the relative luminance values of two colors. **This ranges from 1:1 for the same color, or no contrast, to 21:1 for white against black,** the strongest contrast. There are many contrast checking **tools available online** that calculate this ratio for you.
+```html
+    
+```
+### Avoid Colorblindness Issues by Using Sufficient Contrast
+- In practice, the 4.5:1 ratio can be reached by **darkening the darker color and lightening the lighter one** with the aid of a color contrast checker. Darker colors on the color wheel are considered to be blues, violets, magentas, and reds, whereas lighter colors are oranges, yellows, greens, and blue-greens.
+- hul(0-360,0-100%，0-100%)
+- There are various forms of colorblindness. These can range from a reduced sensitivity to a certain wavelength of light to the inability to see color at all. The most common form is a reduced sensitivity to detect greens.
+### Avoid Colorblindness Issues by Carefully Choosing Colors that Convey Information
+- For example, if two similar green colors are the foreground and background color of your content, a colorblind user may not be able to distinguish them. Close colors can be thought of as neighbors on the color wheel, and those combinations should be avoided when conveying important information.
+- Note
+    - Some online color picking tools include visual simulations of how colors appear for different types of colorblindness. These are great resources in addition to online contrast checking calculators.
+### Give Links Meaning by Using Descriptive Link Text
+```html
+    <a href="" target="_blank">Click here</a>
+    <a href="" alt="">Information about history</a>
+```
+### Make Links Navigatable with HTML Access Keys
+- HTML offers the accesskey attribute to specify a shortcut key to activate or bring focus to an element. This can make navigation more efficient for keyboard-only users.
+```html
+    <button accesskey="b">Important Button</button>
+```
+### Use tabindex to Add Keyboard Focus to an Element
+```html
+    <div tabindex="0">I need keyboard focus!</div>
+```
+- Note
+- A negative tabindex value (typically -1) indicates that an element is focusable, but is not reachable by the keyboard. This method is generally used to bring focus to content programmatically (like when a div used for a pop-up window is activated), and is beyond the scope of these challenges.
+### Use tabindex to Specify the Order of Keyboard Focus for Several Elements
+```html
+    <div tabindex="0">I need keyboard focus!</div>
+    <div tabindex="1">I need keyboard focus!</div>
+```
+- It's important to note that when the tab order is set this way, it overrides the default order (which uses the HTML source). This may confuse users who are expecting to start navigation from the top of the page. This technique may be necessary in some circumstances, but in terms of accessibility, take care before applying it.
