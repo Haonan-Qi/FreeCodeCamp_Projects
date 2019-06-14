@@ -1121,6 +1121,7 @@ Having accessible web content is an ongoing challenge. A great resource for your
     img { height: 250px; width: 250px; }
 ```
 ### Make Typography Responsive
+
 - Instead of using **em** or **px** to size text, you can use **viewport units** for **responsive typography**. Viewport units, like percentages, are relative units, but they are based off different items. **Viewport units** are relative to the **viewport dimensions** (width or height) of a **device**, and percentages are relative to the size of the parent container element.
 
 - The four different viewport units are:
@@ -1129,3 +1130,61 @@ Having accessible web content is an ongoing challenge. A great resource for your
 - vh: 3vh would be 3% of the viewport's height.
 - vmin: 70vmin would be 70% of the viewport's smaller dimension (height vs. width).
 - vmax: 100vmax would be 100% of the viewport's bigger dimension (height vs. width).
+
+## CSS Flexbox
+### Introduction to the CSS Flexbox Challenges
+- A website's User Interface ("UI") has two components. First, there are the visual elements, such as colors, fonts, and images. Second, there is the placement or positioning of those elements. In Responsive Web Design, a UI layout must accommodate many different browsers and devices accessing the content.
+- CSS3 introduced Flexible Boxes, or flexbox, to create page layouts for a dynamic UI. It is a layout mode that arranges elements in a predictable way for different screen sizes and browsers. While somewhat new, all popular modern browsers support flexbox. This section covers how to use flexbox and the different layout options it offers.
+### Use display: flex to Position Two Boxes
+`display: flex`
+- Adding display: flex to an element **turns** it **into** a flex **container**
+    - This makes it possible to align any children of that element into rows or columns
+        - You do this by adding the flex-direction property to the parent item and setting it to row or column.
+### Add Flex Superpowers to the Tweet Embed
+`flex-direction: row`
+### Use the flex-direction Property to Make a Row
+`flex-direction: row`
+### Apply the flex-direction Property to Create Rows in the Tweet Embed
+`flex-direction: row`
+### Use the flex-direction Property to Make a Column
+`flex-direction: column`
+### Apply the flex-direction Property to Create a Column in the Tweet Embed
+`flex-direction: column`
+### Align Elements Using the justify-content Property
+- **main axis.** this concept according to your flex-direction
+`justify-fontent`
+- **center**;, which aligns all the flex items to the center inside the flex container. Others options include:
+- **flex-start**: aligns items to the start of the flex container. For a row, this pushes the items to the left of the container. For a column, this pushes the items to the top of the container.
+- **flex-end**: aligns items to the end of the flex container. For a row, this pushes the items to the right of the container. For a column, this pushes the items to the bottom of the container.
+- **space-between**: aligns items to the center of the main axis, with extra space placed between the items. The first and last items are pushed to the very edge of the flex container. For example, in a row the first item is against the left side of the container, the last item is against the right side of the container, then the other items between them are spaced evenly.
+- **space-around**: similar to space-between but the first and last items are not locked to the edges of the container, the space is distributed around all the items
+### Use the justify-content Property in the Tweet Embed
+### Align Elements Using the align-items Property
+- The different values available for align-items include:
+    - **flex-start**: aligns items to the start of the flex container. For rows, this aligns items to the top of the container. For columns, this aligns items to the left of the container.
+    - **flex-end**: aligns items to the end of the flex container. For rows, this aligns items to the bottom of the container. For columns, this aligns items to the right of the container.
+    - **center**: align items to the center. For rows, this vertically aligns items (equal space above and below the items). For columns, this horizontally aligns them (equal space to the left and right of the items).
+    - **stretch**: stretch the items to fill the flex container. For example, rows items are stretched to fill the flex container top-to-bottom.
+    - **baseline**: align items to their baselines. Baseline is a text concept, think of it as the line that the letters sit on.
+### Use the align-items Property in the Tweet Embed
+### Use the flex-wrap Property to Wrap a Row or Column
+`flex-wrap`
+- nowrap: this is the default setting, and does not wrap items.
+- wrap: wraps items from left-to-right if they are in a row, or top-to-bottom if they are in a column.
+- wrap-reverse: wraps items from bottom-to-top if they are in a row, or right-to-left if they are in a column.
+### Use the flex-shrink Property to Shrink Items
+`flex-shrink` 
+- default is all same
+### Use the flex-grow Property to Expand Items
+`flex-grow`
+- default is all same
+### Use the flex-basis Property to Set the Initial Size of an Item
+`flex-basis:`
+### Use the flex Shorthand Property
+- For example, `flex: 1 0 10px;` will set the item to `flex-grow: 1;, flex-shrink: 0;, and flex-basis: 10px;`
+### Use the order Property to Rearrange Items
+- The order property is used to tell CSS the order of how flex items appear in the flex container. By default, items will appear in the same order they come in the source HTML. The property takes numbers as values, and negative numbers can be used.
+### Use the align-self Property
+- align-selfs
+- This is useful **since other common adjustment techniques** using the CSS properties **float, clear, and vertical-align** **do not** work on flex items.
+- align-self accepts the same values as align-items and will override any value set by the align-items property.
