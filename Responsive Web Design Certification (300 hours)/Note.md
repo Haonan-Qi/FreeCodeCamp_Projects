@@ -1188,3 +1188,105 @@ Having accessible web content is an ongoing challenge. A great resource for your
 - align-selfs
 - This is useful **since other common adjustment techniques** using the CSS properties **float, clear, and vertical-align** **do not** work on flex items.
 - align-self accepts the same values as align-items and will override any value set by the align-items property.
+
+## CSS Flexbox VS Grid
+    - `You can even combine these layout models. Note that you can use a Flexbox container inside a CSS Grid container but you cannot implement it vice-versa. See image below for a visual perspective.`
+    - `https://medium.com/youstart-labs/beginners-guide-to-choose-between-css-grid-and-flexbox-783005dd2412`
+
+
+## CSS Grid
+### Introduction to the CSS Grid Challenges
+- CSS Grid helps you easily build complex web designs. It works by turning an HTML element into a grid container with rows and columns for you to place children elements where you want within the grid.
+### Create Your First CSS Grid
+- Turn any HTML element into a grid container by setting its **display property** to **grid**. This gives you the ability to use all the other properties associated with CSS Grid.
+### Add Columns with grid-template-columns
+```css
+    .container {
+        display: grid;
+        grid-template-columns: 50px 50px;
+    }
+```
+### Add Rows with grid-template-rows
+```css
+    .container {
+        display: grid;
+        grid-template-columns: 50px 50px;
+        grid-template-rows: 50px 50px;
+
+    }
+```
+### Use CSS Grid units to Change the Size of Columns and Rows
+`grid-template-columns: auto 50px 10% 2fr 1fr;`
+- This snippet creates five columns. The first column is as wide as its content, the second column is 50px, the third column is 10% of its container, and for the last two columns; the remaining space is divided into three sections, two are allocated for the fourth column, and one for the fifth.
+### Create a Column Gap Using grid-column-gap
+`grid-column-gap: 10px;`
+### Create a Row Gap using grid-row-gap
+`grid-row-gap: 10px`
+### Add Gaps Faster with grid-gap
+ `grid-gap`
+- grid-gap is a shorthand property for grid-row-gap and grid-column-gap from the previous two challenges that's more convenient to use. 
+    - If grid-gap has one value, it will create a gap between all rows and columns. 
+    - However, if there are two values, it will use the **first one to set the gap between the rows** and the **second value for the columns**.
+### Use grid-column to Control Spacing
+`grid-column: 1 / 3;`
+### Use grid-row to Control Spacing
+`grid-column: 1 / 3;`
+### Align an Item Horizontally using justify-self
+- In CSS Grid, the content of each item is located in a box which is referred to as a cell.
+- Can align the content's position **within** its cell **horizontally** using the **justify-self** property on a grid item.
+    - By default, this property has a value of **stretch**
+    - **start**: aligns the content at the left of the cell,
+    - **center**: aligns the content in the center of the cell,
+    - **end**: aligns the content at the right of the cell.
+### Align an Item Vertically using align-self
+- Just as you can align an item horizontally, there's a way to align an item **vertically** as well. To do this, you use the align-self property on an item. This property accepts all of the same values as justify-self from the last challenge
+    - By default, this property has a value of **stretch**
+    - **start**: aligns the content at the left of the cell,
+    - **center**: aligns the content in the center of the cell,
+    - **end**: aligns the content at the right of the cell.
+### Align All Items Horizontally using justify-items
+- Sometimes you want all the items in your CSS Grid to share the same alignment. You can use the previously learned properties and align them individually, or you can align them all at once horizontally by using justify-items on your grid container. This property can accept all the same values you learned about in the previous two challenges, the difference being that it will move all the items in our grid to the desired alignment.
+### Align All Items Vertically using align-items
+- Using the align-items property on a grid container will set the vertical alignment for all the items in our grid.
+### Divide the Grid Into an Area Template
+- You can group cells of your grid together into an area and give the area a custom name. Do this by using grid-template-areas on the container like this:
+    ```css
+        grid-template-areas:
+            "header header header"
+            "advert content content"
+            "footer footer footer";
+    ```
+- Every word in the code represents a cell and every pair of quotation marks represent a row.
+- In addition to custom labels, you can use a period (.) to designate an empty cell in the grid.
+### Place Items in Grid Areas Using the grid-area Property
+- After creating an areas template for your grid container, as shown in the previous challenge, you can place an item in your custom area by referencing the name you gave it. To do this, you use the grid-area property on an item like this:
+`.item1 { grid-area: header; }`
+### Use grid-area Without Creating an Areas Template
+- item1 { grid-area: 1/1/2/4; }
+- grid-area: horizontal line to start at / vertical line to start at / horizontal line to end at / vertical line to end at;
+### Reduce Repetition Using the repeat Function
+`grid-template-columns: repeat(2, 1fr 50px) 20px;`
+### Limit Item Size Using the minmax Function
+`grid-template-columns: 100px minmax(50px, 200px);`
+### Create Flexible Layouts Using auto-fill
+`repeat(auto-fill, minmax(60px, 1fr));`
+### Create Flexible Layouts Using auto-fit
+- auto-fit works almost identically to auto-fill. The only difference is that when the container's size exceeds the size of all the items combined, auto-fill keeps inserting empty rows or columns and pushes your items to the side, while auto-fit collapses those empty rows or columns and stretches your items to fit the size of the container.
+### Use Media Queries to Create Responsive Layouts
+```css
+    @media (min-width: 300px){
+        .container{
+            grid-template-columns: auto 1fr;
+            grid-template-rows: auto 1fr auto;
+            grid-template-areas:
+                "advert header"
+                "advert content"
+                "advert footer";
+        }
+  }
+```
+### Create Grids within Grids
+- Turning an element into a grid only affects the behavior of its direct descendants. So by turning a direct descendant into a grid, you have a grid within a grid.
+- You can even combine these layout models. Note that you can use a Flexbox container inside a CSS Grid container but you cannot implement it vice-versa. See image below for a visual perspective.
+
+## Responsive Web Design Projects
