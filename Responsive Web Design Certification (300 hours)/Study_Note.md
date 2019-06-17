@@ -1290,3 +1290,6 @@ Having accessible web content is an ongoing challenge. A great resource for your
 - You can even combine these layout models. Note that you can use a Flexbox container inside a CSS Grid container but you cannot implement it vice-versa. See image below for a visual perspective.
 
 ## Responsive Web Design Projects
+
+### Build a Tribute Page
+

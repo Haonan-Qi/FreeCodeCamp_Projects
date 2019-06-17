@@ -1,0 +1,82 @@
+html {
+    font-family: 'Montserrat', sans-serif;
+    text-align: center;
+}
+
+header {
+    /* border: solid; */
+    /* margin-top:50px; */
+    /* background-color: gray; */
+    margin: auto;
+}
+
+hr {
+    max-width: 60vw;
+    border-style: outset;
+}
+
+header p {
+    font-weight: 500;
+    font-size: 20px;
+}
+
+ul {
+    font-size: 15px;
+    max-width: 60vw;
+    margin: 0 auto;
+    text-align: left;
+}
+
+blockquote {
+    font-weight: bold;
+}
+
+li {
+    margin: 10px;
+}
+
+#main {
+    background-color: #eee;
+    background-image: url('img/gravel.png');
+    margin: 10px;
+    padding: 10px 0px;
+    border-radius: 10px;
+    border: solid;
+    border-color: #625440;
+}
+
+#title {
+    font-size: 35 px;
+}
+
+#img-cacaptionption {
+    font-size: 15px;
+}
+
+#img-div {
+    /* background-color: white; */
+    margin-left: 10px;
+    margin-right: 10px;
+    border: solid rgb(0, 0, 0, 0);
+}
+
+#img-caption p {
+    margin: 10px auto;
+    max-width: 80vw;
+}
+
+#headline {
+    text-align: center;
+    font-weight: 880;
+    font-size: 25px;
+}
+
+#image {
+    margin: auto;
+    display: block;
+    border-radius: 10px;
+    max-width: 50%;
+    height: auto;
+    margin-top: 1rem;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.33), 0 10px 10px rgba(0, 0, 0, 0.33);
+}
