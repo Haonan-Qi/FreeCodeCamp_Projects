@@ -1151,7 +1151,7 @@ Having accessible web content is an ongoing challenge. A great resource for your
 ### Apply the flex-direction Property to Create a Column in the Tweet Embed
 `flex-direction: column`
 ### Align Elements Using the justify-content Property
-- **main axis.** this concept according to your flex-direction
+- **main axis.** th
 `justify-fontent`
 - **center**;, which aligns all the flex items to the center inside the flex container. Others options include:
 - **flex-start**: aligns items to the start of the flex container. For a row, this pushes the items to the left of the container. For a column, this pushes the items to the top of the container.

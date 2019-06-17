@@ -1,0 +1,468 @@
+/** global element styling **/
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: "SF Display";
+    font-weight: 400;
+    src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
+}
+
+body {
+    background-color: white;
+    font-family: 'SF Display', sans-serif;
+}
+
+#fivegrains {
+    margin-top: 20px;
+    max-width: 100%
+}
+
+
+/* 知识点boy 当使用fix nav时如何合理的设置anchor */
+
+#a1,
+#a2,
+#a3 {
+    position: relative;
+    left: 0px;
+    /* 下面top的数值根据你的fixednav的高度设置而改变 */
+    top: -80px;
+}
+
+
+/* 知识点因为有fixed的头部导航栏 母元素的position合理设定 */
+
+body {
+    position: relative;
+    background-color: white;
+}
+
+li {
+    list-style: none;
+}
+
+a {
+    color: #000;
+    text-decoration: none;
+    width: 1px;
+}
+
+
+/** global classes styling **/
+
+.container {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.btn {
+    padding: 0 20px;
+    height: 40px;
+    font-size: 1em;
+    font-weight: 900;
+    text-transform: uppercase;
+    border: 3px black solid;
+    border-radius: 2px;
+    background: transparent;
+    cursor: pointer;
+}
+
+.grid {
+    display: flex;
+}
+
+header {
+    /* 知识点：absoulte/fixed/top;[relative] top&right的初始位置需要adjust*/
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    /* 知识点别瞎定义max */
+    min-height: 75px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: white;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+@media (max-width: 600px) {
+    header {
+        flex-wrap: wrap;
+    }
+}
+
+.logo {
+    width: 40%;
+}
+
+@media (max-width: 650px) {
+    .logo {
+        margin-top: 15px;
+        width: 100%;
+        position: relative;
+    }
+}
+
+.logo img {
+    width: 100%;
+    height: 100%;
+    max-width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-left: 20px;
+}
+
+@media (max-width: 650px) {
+    .logo img {
+        margin: 0 auto;
+    }
+}
+
+nav {
+    font-weight: 400;
+    width: 40%
+}
+
+@media (max-width: 650px) {
+    nav {
+        margin-top: 10px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 0 50px;
+    }
+    nav li {
+        padding-bottom: 5px;
+    }
+}
+
+nav ul {
+    width: 35vw;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+@media (max-width: 650px) {
+    nav ul {
+        flex-direction: column;
+    }
+}
+
+#picWithCaption {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    /* 知识点bro 定死的height不会温柔 */
+    /* height: 200px; */
+    margin-top: 120px;
+    text-align: center;
+}
+
+#submit {
+    background-color: #832f33;
+    border-radius: 4px;
+    color: white;
+    font-size: 1em;
+    height: 40px;
+    margin: 10px;
+    border: 0px solid;
+}
+
+#picWithCaption h2 {
+    margin-bottom: 20px;
+    /* 知识点boy 允许过长的词汇合理的被分配到下一行*/
+    word-wrap: break-word;
+    max-width: 1000px;
+    font-weight: normal;
+    font-size: 30px;
+}
+
+input {
+    text-align: center;
+}
+
+#picWithCaption input[type="email"] {
+    display: block;
+    height: 40px;
+    width: 280px;
+    padding: 5px;
+    margin: 10px;
+    border: 1px solid #c0c0c0;
+    border-radius: 10px;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+#features h4 {
+    text-align: center;
+    font-weight: normal;
+    font-size: 2rem;
+    margin: 0 0 0 0;
+    /* 知识点bro 默认的stylesheet很坏事情*/
+    margin-block-start: 0em;
+    margin-block-end: 0em;
+}
+
+.Health_Concept p {
+    text-indent: 30px;
+    line-height: 1.5;
+}
+
+#line_img {
+    text-align: center;
+}
+
+#line {
+    width: 10vw;
+}
+
+#picWithCaption input[type="submit"]:hover {
+    background-color: orange;
+    transition: background-color 1s;
+}
+
+@media (max-width: 650px) {
+    #picWithCaption {
+        margin-top: 120px;
+    }
+}
+
+#features {
+    margin-top: 30px;
+}
+
+#features .icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 125px;
+    width: 20vw;
+    color: darkorange;
+}
+
+@media (max-width: 550px) {
+    #features .icon {
+        display: none;
+    }
+}
+
+.Health_Concept_Introduction_Container {
+    display: flex;
+    justify-content: space-between;
+    /* border: solid; */
+    margin-bottom: 10px;
+    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+@media (max-width: 900px) {
+    .Health_Concept_Introduction_Container {
+        flex-direction: column;
+        /* border: solid; */
+    }
+}
+
+.number_picture {
+    width: 20%;
+    display: flex;
+    /* align-content: center; */
+    justify-content: center;
+    align-items: center;
+    /* border: solid red; */
+}
+
+@media (max-width: 900px) {
+    .number_picture {
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.number_picture img {
+    max-width: 180px;
+    max-height: 90%;
+    display: block;
+    height: auto;
+    border-radius: 10px;
+}
+
+.second_tab {
+    flex-direction: column;
+    width: 80%;
+    text-align: justify;
+    justify-content: space-between;
+    align-content: center;
+    padding-right: 10px;
+    /* border: solid yellow; */
+}
+
+.second_tab p {
+    max-width: 95%;
+    text-indent: 30px;
+}
+
+
+/* 知识点朋友们 media的位置不能乱放的 */
+
+@media (max-width: 900px) {
+    .second_tab {
+        width: 100%;
+        padding-left: 10px;
+        padding-right: 20px;
+        /* border: solid yellow; */
+    }
+    .second_tab h2 {
+        text-align: center;
+        /* border: solid yellow; */
+    }
+}
+
+#features .desc {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    height: 125px;
+    width: 100%;
+    padding: 5px;
+}
+
+@media (max-width: 550px) {
+    #features .desc {
+        width: 100%;
+        text-align: center;
+        padding: 0;
+        height: 150px;
+    }
+}
+
+@media (max-width: 650px) {
+    #container {
+        margin-top: 0;
+    }
+}
+
+#how-it-works {
+    margin-top: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+#how-it-works iframe {
+    max-width: 560px;
+    width: 100%;
+}
+
+#pricing {
+    margin-top: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#pricing #tenor,
+#pricing #bass,
+#pricing #valve {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: calc(100% / 3);
+    margin: 10px;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+#pricing #tenor .level,
+#pricing #bass .level,
+#pricing #valve .level {
+    background-color: #ddd;
+    color: black;
+    padding: 15px 0;
+    width: 100%;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+#pricing #tenor h2,
+#pricing #bass h2,
+#pricing #valve h2 {
+    margin-top: 15px;
+}
+
+#pricing #tenor ol,
+#pricing #bass ol,
+#pricing #valve ol {
+    margin: 15px 0;
+}
+
+#pricing #tenor ol li,
+#pricing #bass ol li,
+#pricing #valve ol li {
+    padding: 5px 0;
+}
+
+#pricing #tenor button,
+#pricing #bass button,
+#pricing #valve button {
+    border: 0;
+    margin: 15px 0;
+    background-color: #f1c40f;
+    font-weight: 400;
+}
+
+#pricing #tenor button:hover,
+#pricing #bass button:hover,
+#pricing #valve button:hover {
+    background-color: orange;
+    transition: background-color 1s;
+}
+
+@media (max-width: 800px) {
+    #pricing {
+        flex-direction: column;
+    }
+    #pricing #tenor,
+    #pricing #bass,
+    #pricing #valve {
+        max-width: 300px;
+        width: 100%;
+        margin: 0 auto;
+        margin-bottom: 10px;
+    }
+}
+
+footer {
+    margin-top: 30px;
+    background-color: #ddd;
+    padding: 20px;
+}
+
+footer ul {
+    display: flex;
+    justify-content: flex-end;
+}
+
+footer ul li {
+    padding: 0 10px;
+}
+
+footer span {
+    margin-top: 5px;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 0.9em;
+    color: #444;
+}
