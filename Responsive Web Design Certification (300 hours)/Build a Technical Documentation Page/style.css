@@ -1,0 +1,161 @@
+@font-face {
+    font-family: "SF Display";
+    font-weight: 400;
+    src: url("https://sf.abarba.me/SF-UI-Display-Regular.otf");
+}
+
+html,
+body {
+    min-width: 290px;
+    color: #4d4e53;
+    background-color: #ffffff;
+    font-family: 'SF Display', Arial, sans-serif;
+    background-image: url('http://drive.google.com/uc?export=view&id=1FH29s2JFWtTtj_qp4OGnpbJd4EgITUlv');
+}
+
+#teste {
+    border: solid;
+}
+
+
+/* 知识点Boy fixed（一种特殊的absolute）是移除出normal flow的 */
+
+#navbar {
+    position: fixed;
+    min-width: 290px;
+    top: 0px;
+    left: 0px;
+    width: 300px;
+    height: 100%;
+    border-right: solid;
+    border-color: #80808059;
+    box-shadow: 0 1px 3px 0 rgba(32, 33, 36, 0.28);
+    background-image: url(../img/frenchstucco.png);
+    background-color: white;
+}
+
+#main-doc {
+    position: absolute;
+    /* 知识点Bro 你都用absolute了还要用什么margin */
+    /* left: 310px; */
+    margin-left: 310px;
+    padding: 20px;
+    margin-bottom: 110px;
+}
+
+h1 {
+    color: black;
+    font-size: 30px;
+    margin: 10px;
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: thin;
+}
+
+#main-doc h1 {
+    text-align: left;
+    margin: 0px;
+}
+
+
+/* 知识点bro overflow-x/y */
+
+
+/* 同时注意这个attrbute的摆放位置 */
+
+
+/* visible/hidden/scroll/auto */
+
+#navbar ul {
+    height: 88%;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#navbar li {
+    color: #4d4e53;
+    box-shadow: 0 0px 3px 0 rgba(32, 33, 36, 0.28);
+    padding: 8px;
+    padding-left: 45px;
+    list-style: none;
+    position: relative;
+    left: -50px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+#navbar li:hover {
+    background-color: rgba(77, 189, 163, 0.81);
+}
+
+#navbar a {
+    color: #4d4e53;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+section article {
+    color: #4d4e53;
+    margin: 15px;
+    font-size: 0.96em;
+}
+
+section li {
+    margin: 15px 0px 0px 20px;
+}
+
+code {
+    display: block;
+    text-align: left;
+    /* 知识点bro */
+    white-space: pre;
+    position: relative;
+    word-break: normal;
+    word-wrap: normal;
+    line-height: 2;
+    background-color: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 0 rgba(32, 33, 36, 0.28);
+}
+
+@media only screen and (max-width: 815px) {
+    /* For mobile phones: */
+    #navbar ul {
+        border: 1px solid;
+        height: 207px;
+    }
+    #navbar {
+        background-color: white;
+        position: absolute;
+        top: 0;
+        padding: 0;
+        margin: 0;
+        width: 100%;
+        max-height: 275px;
+        border: none;
+        z-index: 1;
+    }
+    #main-doc {
+        position: relative;
+        margin-left: 0px;
+        margin-top: 270px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    #main-doc {
+        margin-left: -10px;
+        border: solid red;
+        background-color: red;
+    }
+    code {
+        margin-left: -20px;
+        width: 100%;
+        padding: 15px;
+        padding-left: 10px;
+        padding-right: 45px;
+        min-width: 233px;
+    }
+}
