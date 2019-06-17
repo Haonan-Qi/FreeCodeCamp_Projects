@@ -383,6 +383,7 @@ input {
     margin: 10px;
     border: 1px solid #000;
     border-radius: 3px;
+    padding: 5px;
 }
 
 #pricing #tenor .level,
@@ -394,6 +395,7 @@ input {
     width: 100%;
     text-transform: uppercase;
     font-weight: 700;
+    border-radius: 3px;
 }
 
 #pricing #tenor h2,
