@@ -13,10 +13,6 @@ body {
     background-image: url('http://drive.google.com/uc?export=view&id=1FH29s2JFWtTtj_qp4OGnpbJd4EgITUlv');
 }
 
-#teste {
-    border: solid;
-}
-
 
 /* 知识点Boy fixed（一种特殊的absolute）是移除出normal flow的 */
 
@@ -36,8 +32,6 @@ body {
 
 #main-doc {
     position: absolute;
-    /* 知识点Bro 你都用absolute了还要用什么margin */
-    /* left: 310px; */
     margin-left: 310px;
     padding: 20px;
     margin-bottom: 110px;
@@ -68,8 +62,8 @@ h1 {
 
 #navbar ul {
     height: 88%;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow-y: scroll;
+    overflow-x: scroll;
 }
 
 #navbar li {
@@ -123,7 +117,6 @@ code {
 @media only screen and (max-width: 815px) {
     /* For mobile phones: */
     #navbar ul {
-        border: 1px solid;
         height: 207px;
     }
     #navbar {
