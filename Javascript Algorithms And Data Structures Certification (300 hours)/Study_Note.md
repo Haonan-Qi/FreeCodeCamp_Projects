@@ -1079,6 +1079,127 @@ let varTwo = myFunction(); // set to equal the string "You rock!"
 - Valid Terminal Condition
 
 ## Basic Data Structures
+### introduction to the Basic Data Structure Challenges
+- Understand the basic properties and differences between arrays and objects, as well as how to choose which to use for a given purpose.
+### Use an Array to Store a Collection of Data.
+- multi-dimensional array,
+  - arrays are also capable of storing complex objects.
+- All array's have a length property, which as shown above, can be very easily accessed with the syntax `Array.length.`
+`Array.length` !=  `Array.length()` **no ()**
+### Access an Array's Contents Using Bracket Notation
+- The fundamental feature of any data structure is, of course, the ability to `not only store data`, but to `be able to retrieve` that data `on command.`
+- However, it is important to note, that JavaScript arrays are `zero-indexed`, meaning that the first element of an array is actually at the `zeroth position`, not the first.
+
+### Add Items to an Array with push() and unshift()
+- Array.push() and Array.unshift().
+### Remove Items from an Array with pop() and shift()
+- pop() and shift()
+### Remove Items Using splice()
+-  `remove any number of consecutive elements` from anywhere in an array.
+  - splice() can take up to 3 parameters,
+```js
+array.splice(2, 2);
+// remove 2 elements beginning with the 3rd element
+// array now equals ['today', 'was', 'great']
+```
+- splice() not only `modifies` the array it's being called on, but it `also returns a new array` containing the value of the removed elements
+
+### Add Items Using splice()
+```js
+function colorChange(arr, index, newColor) {
+  arr.splice(index, 1, newColor);
+  return arr;
+}
+
+let colorScheme = ['#878787', '#a08794', '#bb7e8c', '#c9b6be', '#d1becf'];
+
+colorScheme = colorChange(colorScheme, 2, '#332327');
+// we have removed '#bb7e8c' and added '#332327' in its place
+// colorScheme now equals ['#878787', '#a08794', '#332327', '#c9b6be', '#d1becf']
+```
+### Copy Array Items Using slice()
+- slice() takes only 2 parameters — the first is the index at which to begin extraction, and the second is the index at which to `stop extraction (extraction will occur up to, but not including the element at this index). `
+- will not change original data 
+### Copy an Array with the Spread Operator
+- ES6's new spread operator
+```js
+let thisArray = [true, true, undefined, false, null];
+let thatArray = [...thisArray];
+```
+### Combine Arrays with the Spread Operator
+```js
+let thisArray = ['sage', 'rosemary', 'parsley', 'thyme'];
+
+let thatArray = ['basil', 'cilantro', ...thisArray, 'coriander'];
+```
+### Check For The Presence of an Element With indexOf()
+```js
+let fruits = ['apples', 'pears', 'oranges', 'peaches', 'pears'];
+
+fruits.indexOf('dates') // returns -1
+fruits.indexOf('oranges') // returns 2
+fruits.indexOf('pears') // returns 1, the first index at which the element exists
+```
+### Iterate Through All an Array's Items Using For Loops
+- JavaScript offers several built in methods that each iterate over arrays in slightly different ways to achieve different results (`such as every(), forEach(), map(), etc.`), however the technique which is `most flexible` and offers us the greatest amount of `control` is `a simple for loop`.
+```js
+function greaterThanTen(arr) {
+  let newArr = [];
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i] > 10) {
+      newArr.push(arr[i]);
+    }
+  }
+  return newArr;
+}
+
+greaterThanTen([2, 12, 8, 14, 80, 0, 1]);
+// returns [12, 14, 80]
+```
+### Create complex multi-dimensional arrays
+- One of the most powerful features when thinking of arrays as data structures, is that `arrays can contain, or even be completely made up of other arrays.`
+- However, arrays can contain an `infinite depth` of arrays that can contain other arrays, each with their own `arbitrary levels` of depth, and so on
+### Add Key-Value Pairs to JavaScript Objects
+- At their most basic, objects are just collections of `key-value pairs`, or in other words, pieces of data mapped to `unique identifiers` that we call `properties or keys.`
+```js
+let userData = FCC_User.followers;
+// userData equals 572
+let userData = FCC_User['followers']//保险起见 都用这个
+// userData equals 572
+```
+### Modify an Object Nested Within an Object
+
+### Access Property Names with Bracket Notation
+-  Bracket notation is very useful because sometimes object properties `are not known before runtime` or we need to access them `in a more dynamic way.`
+### Use the delete Keyword to Remove Object Properties
+`delete foods.apples;`
+### Check if an Object has a Property
+- One uses the `hasOwnProperty()` method and 
+- the other uses the `in` keyword. 
+```js
+users.hasOwnProperty('Alan');
+'Alan' in users;
+// both return true
+```
+###  Iterate Through the Keys of an Object with a for...in Statement
+- Sometimes you may need to `iterate through all the keys within an object`
+  - This requires a specific syntax in JavaScript called a `for...in `statement. 
+```js
+for (let user in users) {
+  console.log(user);
+};
+```
+- Objects `do not maintain` an `ordering` to stored keys like arrays do; thus a keys position on an object, or the relative order in which it appears, is `irrelevant` when referencing or accessing that key.
+
+### Generate an Array of All Object Keys with Object.keys()
+- We can also generate an array which `contains all the keys stored in an object` using the `Object.keys()` method and `passing in an object` as the argument. 
+  - This `will return an array` with `strings representing each property` in the object. 
+  - Again, there will be no specific order to the entries in the array.
+`Object.keys(obj)`
+### Modify an Array Stored in an Object
+-  Additionally, the optional Advanced Data Structures lessons later in the curriculum also cover the `ES6 Map and Set objects`, both of which are `similar` to ordinary objects `but provide some additional` features.
+
+
 
 ## Basic Algorithm Scripting
 ## Object Oriented Programming
