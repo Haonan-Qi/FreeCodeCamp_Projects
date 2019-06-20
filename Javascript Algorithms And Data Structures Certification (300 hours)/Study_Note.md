@@ -646,10 +646,10 @@ console.log(greeting()); // Hello Anonymous
   - The rest operator eliminates the need to check the args array and allows us to apply `map(), filter() and reduce()` on the parameters array.
 ```js
 function howMany(...args) {
-  return "You have passed " + args.length + " arguments.";
+  return "You have ###  " + args.length + " arguments.";
 }
-console.log(howMany(0, 1, 2)); // You have passed 3 arguments
-console.log(howMany("string", null, [1, 2, 3], { })); // You have passed 4 arguments.
+console.log(howMany(0, 1, 2)); // You have ###  3 arguments
+console.log(howMany("string", null, [1, 2, 3], { })); // You have ###  4 arguments.
 ```
 ### Use the Spread Operator to Evaluate Arrays In-Place
 ```js
@@ -836,6 +836,204 @@ myMathModule.subtract(5,3);
 - The syntax differs in `one key place` - the imported value, add, is `not surrounded by curly braces`, {}. Unlike exported values, the primary method of importing a default export is to simply write the value's name after import.
 
 ## Regular Expressions
+### intro
+- Regular expressions are special strings that represent a search pattern. Also known as `"regex"` or `"regexp"`, they help programmers match, search, and replace text. Regular expressions can appear cryptic because a few characters have special meaning. `The goal is to combine the symbols and text into a pattern that matches what you wan`t, but only what you want. This section will cover the characters, a few shortcuts, and the common uses for writing regular expressions.
+### Using the Test Method
+- The .test() method takes the regex, applies it to a string (which is placed inside the parentheses), and `returns true or false if your pattern finds something or not`.
+```js
+let testStr = "freeCodeCamp";
+let testRegex = /Code/;
+testRegex.test(testStr);
+// Returns true
+```
+### Match Literal Strings
+### Match a Literal String with Different Possibilities
+- You can search for multiple patterns using `the alternation or OR operator`: `|`.
+  - This operator matches patterns either before or after it
+```js
+/yes|no|maybe/
+```
+### Ignore Case While Matching
+- You can match both cases using what is called a `flag.`
+`/ignorecase/i`
+### Extract Matches
+- You can also `extract the actual matches` you found with the `.match()` method.
+```js
+"Hello, World!".match(/Hello/);
+// Returns ["Hello"]
+let ourStr = "Regular expressions";
+let ourRegex = /expressions/;
+ourStr.match(ourRegex);
+// Returns ["expressions"]
+```
+### Find More Than the First Match
+- To search or extract a pattern `more than once`, you can use the g flag.
+```js
+let repeatRegex = /Repeat/g;
+testStr.match(repeatRegex);
+// Returns ["Repeat", "Repeat", "Repeat"]
+```
+### Match Anything with Wildcard Period
+- The wildcard character . will match any one character.
+  - The wildcard is also called dot and period.
+```js
+let humStr = "I'll hum a song";
+let hugStr = "Bear hug";
+let huRegex = /hu./;
+humStr.match(huRegex); // Returns ["hum"]
+hugStr.match(huRegex); // Returns ["hug"]
+```
+### Match Single Character with Multiple Possibilities
+- You can search for a literal pattern with some flexibility with `character classes`
+  - Character classes allow you to define `a group of characters` you wish to match by `placing them inside square ([ and ]) brackets.`
+    - For example, you want to match "bag", "big", and "bug" but not "bog". You can create the regex /b[aiu]g/ to do this.
+
+### Match Letters of the Alphabet
+- `Inside a character set`, you can define `a range of characters` to match using `a hyphen character: -.`
+  - For example, to match lowercase letters a through e you would use [a-e].
+
+### Match Numbers and Letters of the Alphabet
+- Using the hyphen (-) to match a range of characters `is not limited to letters`. It also `works to match a range of numbers.`
+  - For example, /[0-5]/ matches any number between 0 and 5, including the 0 and 5.
+  - Also, it is possible to `combine a range of letters and numbers in a single character set.`
+```js
+let jennyStr = "Jenny8675309";
+let myRegex = /[a-z0-9]/ig;
+// matches all letters and numbers in jennyStr
+jennyStr.match(myRegex);
+```
+### Match Single Characters Not Specified
+- So far, you have created a set of characters that you want to match, but you could also create `a set of characters that you do not want to match. `
+  - These types of character sets are called `negated character sets.`
+  - To create a negated character set, you `place a caret character (^)` after the `opening bracket` and `before the characters you do not want to match`.
+`/[^aeiou]/gi`
+### Match Characters that Occur One or More Times
+- Sometimes, you need to match a character (or group of characters) that appears one or more times in a row. This means it occurs `at least once, and may be repeated.`
+  - You can use the + character to check `if that is the case.`
+  - the character or pattern has to be present consecutively. 
+  `["aa"]` `["a", "a"]`
+### Match Characters that Occur Zero or More Times
+- There's also an option that matches characters that occur `zero` or more times.
+  - The character to do this is the asterisk or star: *.
+### Find Characters with Lazy Matching
+- In regular expressions, `a greedy match` finds the longest possible part of a string that fits the regex pattern and returns it as a match. The alternative is called `a lazy match,` which finds the smallest possible part of the string that satisfies the regex pattern.
+  - Regular expressions are by `default greedy`
+  - However, you can use the `?` character to `change it to lazy matching`
+`/t[a-z]*?i/`
+- Note the position of ? inside the regx
+### Find One or More Criminals in a Hunt
+### Match Beginning String Patterns
+- `Outside of a character set`, the `caret` is used to search for patterns `at the beginning of strings.`
+```js
+let firstString = "Ricky is first and can be found.";
+let firstRegex = /^Ricky/;
+firstRegex.test(firstString);
+// Returns true
+let notFirst = "You can't find Ricky now.";
+firstRegex.test(notFirst);
+// Returns false
+```
+
+### Match Ending String Patterns
+- You can search the end of strings using the `dollar sign character $` at the `end of the regex.`
+```js
+let theEnding = "This is a never ending story";
+let storyRegex = /story$/;
+storyRegex.test(theEnding);
+// Returns true
+let noEnding = "Sometimes a story will have to end";
+storyRegex.test(noEnding);
+// Returns false
+```
+### Match All Letters and Numbers
+- The closest character class in JavaScript to `match the alphabet` is `\w`
+  - This shortcut is `equal to [A-Za-z0-9_].`
+    - `Note`, this character class also `includes` the `underscore character (_).`
+    - `shorthand character classes.`
+### Match Everything But Letters and Numbers
+- You can search for the `opposite` of the `\w` with `\W`
+  - This shortcut is the same as [^A-Za-z0-9_].
+
+### Match All Numbers
+- `just` digits or numbers.
+  - The shortcut to look for `digit characters` is `\d,`
+  - This is equal to the character class [0-9]
+### Match All Non-Numbers
+- The shortcut to look for non-digit characters is \D
+  - his is equal to the character class [^0-9]
+### Restrict Possible Usernames
+{x,}
+```js
+let username = "JackOfAllTrades";
+let userCheck = /^[a-z]{2,}\d*$/i;
+let result = userCheck.test(username);
+```
+### Match Whitespace
+- You can search for `whitespace` using `\s`
+  - This pattern not only matches `whitespace`, but also carriage `return, tab, form feed, and new line characters.`
+    - similar to the character class `[\r\t\f\n\v].`
+### Match Non-Whitespace Characters
+- Search for `non-whitespace using \S,` which is an uppercase s
+  - similar to the character class `[^ \r\t\f\n\v].`
+### Specify Upper and Lower Number of Matches
+- You can specify the lower and upper number of patterns with `quantity specifiers`
+  -  Quantity specifiers are used with curly brackets ({ and }). You put two numbers between the curly brackets - for the lower and upper number of patterns.
+
+  `/a{3,5}h/.`
+### Specify Only the Lower Number of Matches
+- Sometimes you only want to specify the lower number of patterns with no upper limit.
+  - For example, to match only the string "hah" with the letter a appearing `at least 3` times, your regex would be` /ha{3,}h/.`
+### Specify Exact Number of Matches
+- For example, to match only the word "hah" with the letter a `3 times`, your regex would be `/ha{3}h/.`
+### Check for All or None
+- Sometimes the patterns you want to search for may have parts of it that may or may not exist. However, it may be important to check for them `nonetheless.`
+  - You can specify the possible existence of an element with `a question mark, ?`
+  -  This checks for `zero or one` of the preceding element. 
+    - `* zero or more`
+### Positive and Negative Lookahead
+  - This can be useful when you want to search for multiple patterns over the same string.
+```js
+let quit = "qu";
+let noquit = "qt";
+let quRegex= /q(?=u)/;//match q when there is a u follwed
+let qRegex = /q(?!u)/;//match q when the next character is not u
+quit.match(quRegex); // Returns ["q"]
+noquit.match(qRegex); // Returns ["q"]
+------
+let password = "abc123";
+let checkPass = /(?=\w{3,6})(?=\D*\d)/;
+checkPass.test(password); // Returns true
+```
+### Reuse Patterns Using Capture Groups
+- You can search for repeat substrings using capture groups
+  - Using the .match() method on a string will return an array with the `string it matches`, along with its `capture group`.
+```js
+let repeatStr = "regex regex";
+let repeatRegex = /(\w+)\s\1/;
+repeatRegex.test(repeatStr); // Returns true
+repeatStr.match(repeatRegex); // Returns ["regex regex", "regex"]
+```
+### Use Capture Groups to Search and Replace
+```js
+let wrongText = "The sky is silver.";
+let silverRegex = /silver/;
+wrongText.replace(silverRegex, "blue");
+// Returns "The sky is blue."
+```
+- You can also access capture groups in the replacement string with dollar signs ($).
+```js
+"Code Camp".replace(/(\w+)\s(\w+)/, '$2 $1');
+// Returns "Camp Code"
+```
+### Remove Whitespace from Start and End
+- Sometimes whitespace characters around strings are not wanted but are there. Typical processing of strings is to remove the `whitespace` at the `start and end` of it
+`.trim()`
+```js
+let hello = "   Hello, World!  ";
+let wsRegex = /^\s+|\s+$/g; // Change this line
+let result = hello.replace(wsRegex, ''); // Change this line
+```
+
 ## Debugging
 ## Basic Data Structures
 ## Basic Algorithm Scripting
