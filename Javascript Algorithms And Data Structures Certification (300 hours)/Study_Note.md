@@ -1035,7 +1035,51 @@ let result = hello.replace(wsRegex, ''); // Change this line
 ```
 
 ## Debugging
+### Introduction to the Debugging Challenges
+- After spending time creating a brilliant block of code, it is tough realizing it may have errors. These issues generally come in three forms: 
+  - 1) syntax errors that prevent a program from running, 
+  - 2) runtime errors when code fails to execute or has unexpected behavior, and 
+  - 3) semantic (or logical) errors when code doesn't do what it's meant to.
+- Modern code editors (and experience) can help identify `syntax errors`. `Semantic and runtime errors` are harder to find.
+- Debugging is frustrating, but it helps to develop (and follow) a step-by-step approach to review your code. 
+-  Fortunately, debugging is a learnable skill that just requires a little `patience` and `practice` to master.
+### Use the JavaScript Console to Check the Value of a Variable
+`console.log('Hello world!');`
+### Understanding the Differences between the freeCodeCamp and Browser Console
+`console.clear()`
+### Use typeof to Check the Type of a Variable
+```js
+console.log(typeof ""); // outputs "string"
+console.log(typeof 0); // outputs "number"
+console.log(typeof []); // outputs "object"
+console.log(typeof {}); // outputs "object"
+```
+- JavaScript recognizes six `primitive (immutable)` data types: `Boolean, Null, Undefined, Number, String, and Symbol (new with ES6)` and one type for `mutable items`: `Object. `Note that in JavaScript, `arrays` are technically a type of `object`.
+### Catch Misspelled Variable and Function Names
+- The console.log() and typeof methods are the two primary ways to check intermediate values and types of program output
+### Catch Unclosed Parentheses, Brackets, Braces and Quotes
+### Catch Mixed Usage of Single and Double Quotes
+### Catch Use of Assignment Operator Instead of Equality Operator
+### Catch Missing Open and Closing Parenthesis After a Function Call
+```js
+function myFunction() {
+  return "You rock!";
+}
+let varOne = myFunction; // set to equal a function
+let varTwo = myFunction(); // set to equal the string "You rock!"
+```
+### Catch Arguments ###  in the Wrong Order When Calling a Function
+
+### Catch Off By One Errors When Using Indexing
+- avaScript indexing starts at zero
+### Use Caution When Reinitializing Variables Inside a Loop
+
+### Prevent Infinite Loops with a Valid Terminal Condition
+- Printing variable values with each cycle of your loop by using console.log() can uncover buggy behavior related to resetting, or failing to reset a variable.
+- Valid Terminal Condition
+
 ## Basic Data Structures
+
 ## Basic Algorithm Scripting
 ## Object Oriented Programming
 ## Functional Programming
