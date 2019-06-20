@@ -642,7 +642,7 @@ console.log(greeting()); // Hello Anonymous
 ```
 - The default parameter kicks in when the argument is not specified (it is undefined). As you can see in the example above, the parameter name will receive its default value "Anonymous" when you do not provide a value for the parameter. You can add default values for as many parameters as you want.
 ### Use the Rest Operator with Function Parameters
-- In order to help us create more flexible functions, ES6 introduces the rest operator for function parameters. With the rest operator, you can create functions that take a variable number of arguments. These arguments are stored in an array that can be accessed later from inside the function.
+- In order to help us create more flexible functions, ES6 introduces the rest operator for function parameters. `With the rest operator, you can create functions that take a variable number of arguments.` These arguments are stored in an array that can be accessed later from inside the function.
   - The rest operator eliminates the need to check the args array and allows us to apply `map(), filter() and reduce()` on the parameters array.
 ```js
 function howMany(...args) {
@@ -665,21 +665,175 @@ const maximus = Math.max(...arr); // returns 89
 - ...arr returns an unpacked array. In other words, it spreads the array.
 - However, the spread operator `only works in-place,` like `in an argument to a function or in an array literal`. The following code will not work:
 ### Use Destructuring Assignment to Assign Variables from Objects
+```js
+var voxel = {x: 3.6, y: 7.4, z: 6.54 };
+var x = voxel.x; // x = 3.6
+var y = voxel.y; // y = 7.4
+var z = voxel.z; // z = 6.54
+----
+const { x, y, z } = voxel; // x = 3.6, y = 7.4, z = 6.54
+----
+const { x : a, y : b, z : c } = voxel // a = 3.6, b = 7.4, c = 6.54
+```
 ### Use Destructuring Assignment to Assign Variables from Nested Objects
+```js
+const a = {
+  start: { x: 5, y: 6},
+  end: { x: 6, y: -9 }
+};
+const { start : { x: startX, y: startY }} = a;
+console.log(startX, startY); // 5, 6
+```
 ### Use Destructuring Assignment to Assign Variables from Arrays
+- One key difference between the spread operator and `array destructuring` is that the `spread operator` unpacks all contents of an array into `a comma-separated list`. Consequently, `you cannot pick or choose which elements you want to assign to variables.`
+```js
+const [a, b,,, c] = [1, 2, 3, 4, 5, 6];
+console.log(a, b, c); // 1, 2, 5
+```
 ### Use Destructuring Assignment with the Rest Operator to Reassign Array Elements
+- In some situations involving array destructuring, we might want to collect the rest of the elements into a separate array.
+  - The result is similar to Array.prototype.slice()
+```js
+const [a, b, ...arr] = [1, 2, 3, 4, 5, 7];
+console.log(a, b); // 1, 2
+console.log(arr); // [3, 4, 5, 7]
+```
+- Rest element must be last element
+- The rest element only works correctly as the last variable in the list. As in, you cannot use the rest operator to catch a subarray that leaves out last element of the original array.
+- The slice() method returns a shallow copy of a portion of an array into a new array object selected from begin to end `(end not included)`.
+  - `The original array will not be modified.`
 ### Use Destructuring Assignment to Pass an Object as a Function's Parameters
+```js
+const profileUpdate = (profileData) => {
+  const { name, age, nationality, location } = profileData;
+  // do something with these variables
+}
+----
+const profileUpdate = ({ name, age, nationality, location }) => {
+  /* do something with these fields */
+}
+```
 ### Create Strings using Template Literals
-### Write Concise Object Literal Declarations Using Simple Fields
-### Write Concise Declarative Functions with ES6
-### Use class Syntax to Define a Constructor Function
-### Use getters and setters to Control Access to an Object
-### Understand the Differences Between import and require
-### Use export to Reuse a Code Block
-### Use * to Import Everything from a File
-### Create an Export Fallback with export default
-### Import a Default Export
+- not **`** not equal to **'** and **"**
+- Secondly, notice that the string is multi-line, `both in the code and the output`. This saves inserting \n within strings.
+```js
+const person = {
+  name: "Zodiac Hasbro",
+  age: 56
+};
 
+// Template literal with multi-line and string interpolation
+const greeting = `Hello, my name is ${person.name}!
+I am ${person.age + 3} years old.`;
+
+console.log(greeting); // prints
+// Hello, my name is Zodiac Hasbro!
+// I am 56 years old.
+```
+### Write Concise Object Literal Declarations Using Simple Fields
+```js
+const getMousePosition = (x, y) => ({
+  x: x,
+  y: y
+});
+------
+const getMousePosition = (x, y) => ({ x, y });
+```
+### Write Concise Declarative Functions with ES6
+- With ES6, You can `remove the function keyword` and `colon altogether` when `defining functions in objects`. Here's an example of this syntax:
+```js
+const person = {
+  name: "Taylor",
+  sayHello: function() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
+------
+const person = {
+  name: "Taylor",
+  sayHello() {
+    return `Hello! My name is ${this.name}.`;
+  }
+};
+```
+### Use class Syntax to Define a Constructor Function
+- ES6 provides a new syntax to help create objects, using the keyword class.
+
+- This is to be noted, that the class syntax is just a syntax, and not a full-fledged class based implementation of object oriented paradigm, unlike in languages like Java, or Python, or Ruby etc.
+```js
+var SpaceShuttle = function(targetPlanet){
+  this.targetPlanet = targetPlanet;
+}
+var zeus = new SpaceShuttle('Jupiter');
+-------
+class SpaceShuttle {
+  constructor(targetPlanet){
+    this.targetPlanet = targetPlanet;
+  }
+}
+const zeus = new SpaceShuttle('Jupiter');
+```
+### Use getters and setters to Control Access to an Object
+```js
+class Book {
+  constructor(author) {
+    this._author = author;
+  }
+  // getter
+  get writer(){
+    return this._author;
+  }
+  // setter
+  set writer(updatedAuthor){
+    this._author = updatedAuthor;
+  }
+}
+const lol = new Book('anonymous');
+console.log(lol.writer);  // anonymous
+lol.writer = 'wut';
+console.log(lol.writer);  // wut
+```
+### Understand the Differences Between import and require
+- In the past, the function require() would be used to import the functions and code in external files and modules
+  - While handy, this presents a problem: some files and modules are rather large, and you may only need certain code from those external resources.
+- ES6 gives us a very handy tool known as import. With it, we can choose which parts of a module or file to load into a given file, saving time and memory.
+```js
+import { countItems } from "math_array_functions"
+import { function } from "file_path_goes_here"
+// We can also import variables the same way!
+```
+- `The whitespace` surrounding the function `inside the curly braces is a best practice` - it makes it easier to read the import statement.
+- In most cases, the file path requires a `./ ` before it; otherwise, node will `look in the node_modules directory` first trying to `load it as a dependency.`
+### Use export to Reuse a Code Block
+- When we want some code - a function, or a variable - to be usable in another file, we must export it in order to import it into another file. Like import, export is a non-browser feature.
+- The following is what we refer to as a named export.
+```js
+const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+export { capitalizeString } //How to export functions.
+export const foo = "bar"; //How to export variables.
+-----
+const capitalizeString = (string) => {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+const foo = "bar";
+export { capitalizeString, foo }
+```
+### Use * to Import Everything from a File
+```js
+import * as myMathModule from "math_functions";
+myMathModule.add(2,3);
+myMathModule.subtract(5,3);
+```
+### Create an Export Fallback with export default
+- Since export default is used to declare a fallback value for a module or file, you can only have one value be a default export in each module or file. Additionally, you cannot use export default with var, let, or const
+- Named exports are useful to export several values. During the import, it is mandatory to use the same name of the corresponding object.
+
+- But a default export can be imported with any name for example:
+
+### Import a Default Export
+- The syntax differs in `one key place` - the imported value, add, is `not surrounded by curly braces`, {}. Unlike exported values, the primary method of importing a default export is to simply write the value's name after import.
 
 ## Regular Expressions
 ## Debugging
