@@ -1118,7 +1118,7 @@ colorScheme = colorChange(colorScheme, 2, '#332327');
 ```
 ### Copy Array Items Using slice()
 - slice() takes only 2 parameters — the first is the index at which to begin extraction, and the second is the index at which to `stop extraction (extraction will occur up to, but not including the element at this index). `
-- will not change original data 
+- will `not change` original data 
 ### Copy an Array with the Spread Operator
 - ES6's new spread operator
 ```js
@@ -1413,6 +1413,27 @@ function getIndexToIns(arr, num) {
 ```
 ### Mutations
 - `every`
+note what result filter will save
+```js
+
+function mutation(arr) {
+  let f = arr[0].toLowerCase().split("")
+  let s = arr[1].toLowerCase().split("")
+
+  console.log(s.filter(e=>!f.includes(e)))
+  console.log(s.filter(e=>!f.includes(e)).length)
+
+  return s.filter(e=>!f.includes(e)).length > 0?false:true;
+}
+
+mutation(["hello", "hey"]);
+
+-------------------
+s.filter(e=>!f.includes(e)).length > 0?false:true
+Update-----------------------below
+s.every(e=>f.includes(e)) 所有元素满足 返true
+```
+
 ### Chunky Monkey
 ```js
 function chunkArrayInGroups(arr, size) {
@@ -1424,9 +1445,29 @@ function chunkArrayInGroups(arr, size) {
       }
     }
 ```
+```js
+function chunkArrayInGroups(arr, size) {
+      // Break it up.
+      var newArr = [];
+      var i = 0;
 
-
-
+      while (i < arr.length) {
+        newArr.push(arr.slice(i, i+size));
+        i += size;
+      }
+      return newArr;
+    }
+    chunkArrayInGroups(["a", "b", "c", "d"], 2);
+```
+```js
+function chunkArrayInGroups(arr, size) {
+      var newArr = [];
+      while (arr.length) {
+        newArr.push(arr.splice(0,size));
+      }
+      return newArr;
+    }
+```
 
 
 ## Object Oriented Programming
