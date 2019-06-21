@@ -1103,7 +1103,6 @@ array.splice(2, 2);
 // array now equals ['today', 'was', 'great']
 ```
 - splice() not only `modifies` the array it's being called on, but it `also returns a new array` containing the value of the removed elements
-
 ### Add Items Using splice()
 ```js
 function colorChange(arr, index, newColor) {
@@ -1202,6 +1201,234 @@ for (let user in users) {
 
 
 ## Basic Algorithm Scripting
+### Introduction to Basic Algorithm Scripting
+- A computer algorithm is a sequence of steps that is followed to achieve a particular outcome. To write an algorithm, you must first understand a problem, and then solve it with coding.
+
+- To make solving problems easier, it can be helpful to break them down into many chunks. Then, each chunk can be solved one by one. For example, if you are building a calculator, don't try to solve the problem as a whole. `First, consider how to get inputs. Then, determine each arithmetic operation one by one. Finally, display the results.`
+
+- In this section we will learn to solve basic algorithm problems using JavaScript. This will help you improve your problem solving skills and prepare you to later solve more complex problems.
+
+- Hint
+  - If you get stuck, try using console.log() to log variable values to the console. This will help to debug problems.
+### Convert Celsius to Fahrenheit
+- The algorithm to convert from Celsius to `Fahrenheit` is the `temperature` in Celsius `times 9/5`, `plus 32`.
+```js
+function convertToF(celsius) {
+  let fahrenheit;
+  return fahrenheit;
+}
+------
+const convertToF = function(celsius){
+  let fahrenheit;
+  return fahrenheit;
+}
+--------
+const convertToF = (celsius) => celsius*9/5+32
+```
+### Reverse a String
+```js
+function reverseString(str) {
+  return str.split('').reverse().join('');
+}
+```
+- Our goal is to take the input, str, and return it in reverse. Our first step is to split the string by characters using `split('')`. Notice that we don’t leave anything in between the single quotes, this tells the function to `split` the string `by each character`.
+- Next we `chain` the `reverse() function`, which takes our `array` of characters and `reverses` them.
+- Finally, we chain` join('')` to put our characters `back together into a string`. Notice once again that we left `no spaces` in the argument for join, this makes sure that the array of characters is joined back together by each character.
+
+```js
+function reverseString(str) {
+  return (str === '') ? '' : reverseString(str.substr(1)) + str.charAt(0);
+}
+reverseString("hello");
+-----------------------
+function reverseString(str) {
+    var newString = "";
+    for (var i = str.length - 1; i >= 0; i--) {
+        newString += str[i];
+    }
+    return newString;
+}
+reverseString('hello');
+-----------------------
+function reverseString(str) {
+    return str.split("").reverse().join("");
+}
+reverseString("hello");
+```
+
+### Factorialize a Number
+- This one starts easily since `0! = 1`, so you can go ahead and simply return 1 there.
+  - Alaways consider the special situation
+```js
+function factorialize(num) {
+  if (num === 0) { return 1; }
+  return num * factorialize(num-1);
+}
+factorialize(5);
+```
+
+### Find the Longest Word in a String
+- str.split(' ') != str.split('')
+```js
+
+function findLongestWordLength(str) {
+  let tempArr = str.split(' ');
+  let maxLength = 0;
+  for(let i = 0;i < tempArr.length;i++)
+  {
+    if (maxLength < tempArr[i].length){
+      maxLength = tempArr[i].length
+    }
+  }
+  return maxLength;
+}
+}
+```
+### Return Largest Numbers in Arrays
+```js
+function largestOfFour(arr) {
+  let maxNumberInEachSubArry = [];
+  for(let i = 0;i < arr.length;i++){
+    maxNumberInEachSubArry.push(Math.max(...arr[i]))
+  }
+  return maxNumberInEachSubArry;
+}
+------------
+function largestOfFour(arr) {
+  return arr.map(function(group){
+    return group.reduce(function(prev, current) {
+      return (current > prev) ? current : prev;
+    });
+  });
+}
+----------------
+function largestOfFour(arr) {
+  return arr.map(Function.apply.bind(Math.max, null));
+}
+```
+- Calling reduce() on an empty array `without an initialValue` will throw a TypeError.
+- arr.reduce(callback(accumulator, currentValue[, index[, array]]), [, initialValue])
+  - The first time the callback is called, accumulator and currentValue can be one of two values. `If initialValue is provided` in the call to reduce(), then `accumulator` will be equal to `initialValue`, and currentValue will be equal to the first value in the array. `If no initialValue` is provided, then `accumulator` will be equal to the `first value` in the array, and currentValue will be equal to the second.
+- The map() method creates a new array with the results of calling a provided function on every element in the calling array.
+- Arror func
+  - When there is only one parameter, we can remove the surrounding parenthesies:
+
+### Confirm the Ending
+- The `endsWith()` method determines whether a string ends with the characters of a specified string, `returning true or false as appropriate.`
+```js
+function confirmEnding(str, target) {
+
+  return str.slice(-target.length) == target? true:false
+
+}
+```
+- if you know the index(the position) on which you'll stop (but NOT include), Use slice()
+  - if you know the length of characters to be extracted use substr().
+
+### Repeat a String Repeat a String
+- string.repeat(numOfRepeat)
+### Truncate a String
+- length watch your spelling
+### Finders Keepers
+- The return statement ends `function execution` and specifies a value to be returned to the function caller.
+```js
+function findElement(arr, func) {
+  let arr2 = arr;
+  return arr.map((i)=>func(i)?true:false).includes(true)? arr2[arr.map((i)=>func(i)?true:false).indexOf(true)]:undefined;
+}
+```
+
+### Boo who
+- typeof Baby don forget this
+```js
+function booWho(bool) {
+  return bool===true||bool===false?true:false;
+}
+booWho(null);
+-------------------
+function booWho(bool) {
+      return typeof bool === 'boolean';
+    }
+
+    // test here
+    booWho(null);
+```
+### Title Case a Sentence
+- Clear the requriement first, there are two of them baby
+  - Return the provided string with the first letter of each word capitalized. 
+  - Make sure the rest of the word is in lower case.
+```js
+function titleCase(str) {
+  return str.toLowerCase().replace(/(^|\s)\S/g, (L) => L.toUpperCase());
+}
+```
+
+### Slice and Splice
+```js
+function frankenSplice(arr1, arr2, n) {
+  // It's alive. It's alive!
+  return [...arr2.slice(0,n),...arr1,...arr2.slice(n)];
+}
+```
+### Falsy Bouncer
+- Falsy values in JavaScript are `false, null, 0, "", undefined, and NaN.`
+```js
+function bouncer(arr) {
+  // Don't show a false ID to this bouncer.
+  const falsy = [false,null,0,"",undefined,NaN]
+  return arr.filter(i=>!falsy.includes(i)
+  );
+}
+
+function bouncer(arr) {
+  return arr.filter(Boolean);
+}
+```
+
+### Where do I Belong
+```js
+function getIndexToIns(arr, num) {
+
+return arr.concat(num).sort((a,b) => a-b).indexOf(num);
+
+}
+
+getIndexToIns([1,3,4],2);
+```
+```js
+
+function getIndexToIns(arr, num) {
+  let temp = arr.sort((a, b) => a - b)
+  if (temp.includes(num)){
+    return temp.indexOf(num)
+  }else{
+    for(let i=0;i<arr.length;i++){
+      if(temp[i]>=num){
+        return i;
+      }
+    } 
+  }
+  return arr.length
+}
+```
+### Mutations
+- `every`
+### Chunky Monkey
+```js
+function chunkArrayInGroups(arr, size) {
+      if (arr.length <= size){
+        return [arr];
+      }
+      else {
+        return [arr.slice(0,size)].concat(chunkArrayInGroups(arr.slice(size),size));
+      }
+    }
+```
+
+
+
+
+
 ## Object Oriented Programming
 ## Functional Programming
 ## Intermediate Algorithm Scripting
