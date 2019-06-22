@@ -1767,5 +1767,179 @@ duck.glide();
 ```
 
 ## Functional Programming
+### Introduction to the Functional Programming Challenges
+- Functional programming is an `approach` to `software development` based around the `evaluation of functions`. Like mathematics, functions in programming map `input` to `output` to `produce a result`. You can `combine` basic functions in many ways `to` `build` more and more `complex` programs.
+
+- Functional programming follows a few core principles:
+
+  - Functions are `independent` from the `state` of the `program` or global variab`les. They `only depend on`the arguments` passed `into` them to make a calculation
+
+  - Functions try to limit any changes to the state of the program and `avoid` changes to the `global` `objects` holding data
+
+  - Functions have `minimal side effects` in the program
+
+- The functional programming software development approach `breaks` a program `into` small, testable `parts`. This section covers basic functional programming principles in JavaScript.
+### Learn About Functional Programming
+- Functional programming is a style of programming where solutions are `simple`, `isolated` functions, `without` any `side effects` `outside` of `the function scope`.
+`INPUT -> PROCESS -> OUTPUT`
+  -
+### Understand Functional Programming Terminology
+- `Callbacks` are the functions that are slipped or passed into another function to decide the invocation of that function. You may have seen them passed to other methods, for example in filter, the callback function tells JavaScript the criteria for how to filter an array.
+- Functions that can be assigned to a variable, passed into another function, or returned from another function just like any other normal value, are called `first class functions`. In JavaScript, `all` functions `are` first class functions.
+- The functions that take a function as an argument, or return a function as a return value are called `higher order functions`
+- When the functions are passed in to another function or returned from another function, then those functions which gets passed in or returned can be called a `lambda`.
+
+1. Callbacks 
+2. first class functions 
+3. higher order functions 
+4. lambda
+
+### Understand the Hazards of Using `Imperative` Code
+- In English (and many other languages), the `imperative` tense is used to give commands. Similarly, an `imperative` style in programming is one that gives the computer a set of statements to perform a task.
+
+### Avoid Mutations and Side Effects Using Functional Programming
+- javaScript offers many `predefined` `methods` that handle common tasks so you don't need to write out how the computer should perform them. For example, instead of using the `for loop` mentioned above, you could call the `map method` which handles the details of iterating over an array. This helps to `avoid` `semantic` `errors`, like the "Off By One Errors" that were covered in the Debugging section.
+### Pass Arguments to Avoid External Dependence in a Function
+- One of the `core` `principle` of functional programming is to `not` `change` `things`
+  - Changes lead to bugs. 
+  - Recall that in functional programming, `changing` or `altering` things is called `mutation`
+-  A function, ideally, should be a `pure function`, meaning that it does not cause any `side effects.`
+### Refactor Global Variables Out of Functions
+- `Another` `principle` of functional programming is to always `declare` your `dependencies` `explicitly`
+  - This means if a function depends on a `variable` or `object` being present, `then` pass that variable or object directly into the function as an argument.
+```js
+// the global variable
+var fixedValue = 4;
+
+// Add your code below this line
+function incrementer (fixedValue) {
+  return fixedValue + 1;
+  
+  // Add your code above this line
+}
+
+var newValue = incrementer(fixedValue); // Should equal 5
+console.log(fixedValue); // Should print 4
+----------------
+var fixedValue = 4;
+
+// Add your code below this line
+function incrementer () {
+  return fixedValue + 1;
+  
+  // Add your code above this line
+}
+```
+
+
+### Use the map Method to Extract Data from an Array
+- Also, we have seen the value in having a function `only depend on` its `input` arguments.
+  - functional programming is centered around a theory of functions.
+- Functions are considered First Class Objects in JavaScript, which means they can be used like any other object.
+- A pure function is allowed to alter `local` `variables` defined within its scope, 
+  - although, it's `preferable` to `avoid` that as well.
+
+- `foreach` vs `map`
+### Implement map on a Prototype
+### Use the filter Method to Extract Data from an Array
+### Implement the filter Method on a Prototype
+### Return Part of an Array Using the slice Method
+### Remove Elements from an Array Using slice Instead of splice
+### Combine Two Arrays Using the concat Method
+- It returns a new array and `does not mutate` either of the `original` arrays. 
+### Add Elements to the End of an Array Using concat Instead of push
+- `concat` vs `push`
+### Use the reduce Method to Analyze Data
+- Array.prototype.reduce(), or simply reduce(), is `the most general of all array operations` in JavaScript.
+  - The reduce method allows for more general forms of array processing, and it's possible to show that both `filter` and `map` can be derived as `a special application of reduce.`
+### Sort an Array Alphabetically using the sort Method
+- The sort() method sorts the elements of an array in place and returns the sorted array. The default sort order is built upon `converting` the `elements` into `strings`, then `comparing` their sequences of `UTF-16 code` units values.
+  - The `time` and `space` `complexity` of the sort `cannot be guaranteed` as it `depends on` the `implementation`.
+### Return a Sorted Array Without Changing the Original Array
+```js
+var globalArray = [5, 6, 3, 2, 9];
+function nonMutatingSort(arr) {
+  // Add your code below this line
+  return [].concat(arr).sort(function(a, b) {
+    return a - b;
+  });
+  // Add your code above this line
+}
+nonMutatingSort(globalArray);
+```
+### Split a String into an Array Using the split Method
+- Since strings are immutable, the split method makes it easier to work with them.
+  -  It takes an argument for the delimiter, which can be a character to use to break up the `string` or a `regular expression`. 
+```js
+var str = "Hello World";
+var bySpace = str.split(" ");
+// Sets bySpace to ["Hello", "World"]
+
+var otherString = "How9are7you2today";
+var byDigits = otherString.split(/\d/);
+// Sets byDigits to ["How", "are", "you", "today"]
+```
+### Combine an Array into a String Using the join Method
+- The join method is used to join the elements of an array together to create a string
+
+### Apply Functional Programming to Convert Strings to URL Slugs
+```js
+// the global variable
+var globalTitle = "Winter Is Coming";
+
+// Add your code below this line
+function urlSlug(title) {
+return title.split(/\W/).filter((obj)=>{
+    return obj !=='';
+  }).join('-').toLowerCase();
+  
+}
+// Add your code above this line
+
+var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
+------------+
+// the global variable
+var globalTitle = "Winter Is Coming";
+
+// Add your code below this line
+function urlSlug(title) {
+  return title.toLowerCase().trim().split(/\s+/).join('-');
+}
+// Add your code above this line
+
+var winterComing = urlSlug(globalTitle); // Should be "winter-is-coming"
+```
+### Use the every Method to Check that Every Element in an Array Meets a Criteria
+
+### Use the some Method to Check that Any Elements in an Array Meet a Criteria
+- The some method works with arrays to check if any element passes a particular test. It returns a Boolean value - true if any of the values meet the criteria, false if not.
+### Introduction to Currying and Partial Application
+- The arity of a function is the number of arguments it requires. Currying a function means to convert a function of N arity into N functions of arity 1.
+  - In other words, it restructures a function so it takes one argument, then returns another function that takes the next argument, and so on.
+- This is useful in your program if you `can't supply all the arguments` to a function `at one time`. You can save each function call into a variable, which will hold the returned function reference that takes the next argument when it's available. Here's an example using the curried function in the example above:
+  - Similarly, `partial application` can be described as applying a few arguments to a function at a time and returning another function that is applied to more arguments.
+
+```js
+//Impartial function
+function impartial(x, y, z) {
+  return x + y + z;
+}
+var partialFn = impartial.bind(this, 1, 2);
+partialFn(10); // Returns 13
+-------------
+//Un-curried function
+function unCurried(x, y) {
+  return x + y;
+}
+
+//Curried function
+function curried(x) {
+  return function(y) {
+    return x + y;
+  }
+}
+curried(1)(2) // Returns 3
+```
+
 ## Intermediate Algorithm Scripting
 ## JavaScript Algorithms and Data Structures Projects
