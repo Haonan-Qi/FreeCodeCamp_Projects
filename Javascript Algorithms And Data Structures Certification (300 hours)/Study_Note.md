@@ -1772,7 +1772,7 @@ duck.glide();
 
 - Functional programming follows a few core principles:
 
-  - Functions are `independent` from the `state` of the `program` or global variab`les. They `only depend on`the arguments` passed `into` them to make a calculation
+  - Functions are `independent` from the `state` of the `program` or global variab`les. They `only depend on`the arguments` ###  `into` them to make a calculation
 
   - Functions try to limit any changes to the state of the program and `avoid` changes to the `global` `objects` holding data
 
@@ -1780,14 +1780,14 @@ duck.glide();
 
 - The functional programming software development approach `breaks` a program `into` small, testable `parts`. This section covers basic functional programming principles in JavaScript.
 ### Learn About Functional Programming
-- Functional programming is a style of programming where solutions are `simple`, `isolated` functions, `without` any `side effects` `outside` of `the function scope`.
+  - Functional programming is a style of programming where solutions are `simple`, `isolated` functions, `without` any `side effects` `outside` of `the function scope`.
 `INPUT -> PROCESS -> OUTPUT`
   -
 ### Understand Functional Programming Terminology
-- `Callbacks` are the functions that are slipped or passed into another function to decide the invocation of that function. You may have seen them passed to other methods, for example in filter, the callback function tells JavaScript the criteria for how to filter an array.
-- Functions that can be assigned to a variable, passed into another function, or returned from another function just like any other normal value, are called `first class functions`. In JavaScript, `all` functions `are` first class functions.
+- `Callbacks` are the functions that are slipped or ###  into another function to decide the invocation of that function. You may have seen them ###  to other methods, for example in filter, the callback function tells JavaScript the criteria for how to filter an array.
+- Functions that can be assigned to a variable, ###  into another function, or returned from another function just like any other normal value, are called `first class functions`. In JavaScript, `all` functions `are` first class functions.
 - The functions that take a function as an argument, or return a function as a return value are called `higher order functions`
-- When the functions are passed in to another function or returned from another function, then those functions which gets passed in or returned can be called a `lambda`.
+- When the functions are ###  in to another function or returned from another function, then those functions which gets ###  in or returned can be called a `lambda`.
 
 1. Callbacks 
 2. first class functions 
@@ -1942,4 +1942,377 @@ curried(1)(2) // Returns 3
 ```
 
 ## Intermediate Algorithm Scripting
+### Introduction to the Intermediate Algorithm Scripting Challenges
+
+### Sum All Numbers in a Range
+```js
+function sumAll(arr) {
+    var sum = 0;
+    for (var i = Math.min(...arr); i <= Math.max(...arr); i++){
+        sum += i;
+    }
+  return sum;
+}
+
+sumAll([1, 4]);
+```
+### Diff Two Arrays
+### Seek and Destroy
+`const destroyer = (arr, ...args) => arr.filter(i => !args.includes(i));`
+### Wherefore art thou
+```js
+function whatIsInAName(collection, source) {
+  // "What's in a name? that which we call a rose
+  // By any other name would smell as sweet.”
+  // -- by William Shakespeare, Romeo and Juliet
+  var srcKeys = Object.keys(source);
+
+  // filter the collection
+  return collection.filter(function (obj) {
+    return srcKeys
+      .map(function(key) {
+        return obj.hasOwnProperty(key) && obj[key] === source[key];
+      })
+      .reduce(function(a, b) {
+        return a && b;
+      });
+  });
+}
+```
+### Spinal Tap Case
+```js
+return str.trim().split(/\s|_|(?=[A-Z])/).join('-').toLowerCase
+```
+### Pig Latin
+```js
+function translatePigLatin(str) {
+    var strArr = [];
+    var tmpChar;
+
+    // check if the char is consonant using RegEx
+    function isConsonant(char) {
+        return !/[aeiou]/.test(char);
+    }
+
+    // return initial str + "way" if it starts with vowel
+    // if not - convert str to array
+    if (!isConsonant(str.charAt(0)))
+        return str + "way";
+    else
+        strArr = str.split("");
+
+    // push all consonats to the end of the array
+    while (isConsonant(strArr[0])) {
+        tmpChar = strArr.shift();
+        strArr.push(tmpChar);
+    }
+ // convert array to string and concatenate "ay" at the end  
+ return strArr.join("")+"ay";
+}
+
+// test here
+translatePigLatin("consonant");
+```
+### Search and Replace
+```js
+function myReplace(str, before, after) {
+  // Find index where before is on string
+  var index = str.indexOf(before);
+  // Check to see if the first letter is uppercase or not
+  if (str[index] === str[index].toUpperCase()) {
+    // Change the after word to be capitalized before we use it.
+    after = after.charAt(0).toUpperCase() + after.slice(1);
+  }
+  // Now replace the original str with the edited one.
+  str = str.replace(before, after);
+
+  return str;
+}
+
+// test here
+myReplace("A quick brown fox jumped over the lazy dog", "jumped", "leaped");
+--------------------
+```
+### DNA Pairing
+```js
+function pairElement(str) {
+  let pairRule = {C:"G",G:"C",A:"T",T:"A"}
+  return str.split("").map(e=>[e,pairRule[e]])
+}
+
+pairElement("GCG");
+```
+### Missing letters
+```js
+function fearNotLetter(str) {
+  var allChars = '';
+
+  var notChars = new RegExp('[^'+str+']','g');//Note this how to use variable into a Regx directly +++
+  //++++++++++++++ str ++++
+
+  for (var i = 0; allChars[allChars.length-1] !== str[str.length-1] ; i++)
+    allChars += String.fromCharCode(str[0].charCodeAt(0) + i);
+
+  return allChars.match(notChars) ? allChars.match(notChars).join('') : undefined;
+}
+```
+### Sorted Union
+```js
+//jshint esversion:6
+
+function uniteUnique(...arrays) {
+
+  //make an array out of the given arrays and flatten it (using the spread operator)
+  const flatArray = [].concat(...arrays);
+
+  // create a Set which clears any duplicates since it's a regulat set and not a multiset
+  return [...new Set(flatArray)];
+}
+
+// test here
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+```
+### Convert HTML Entities
+```js
+function convertHTML(str) {
+      // Use Object Lookup to declare as many HTML entities as needed.
+      htmlEntities={
+        '&':'&amp;',
+        '<':'&lt;',
+        '>':'&gt;',
+        '"':'&quot;',
+        '\'':"&apos;"
+      };
+      //Use map function to return a filtered str with all entities changed automatically.
+      return str.split('').map(entity => htmlEntities[entity] || entity).join('');
+    }
+
+    // test here
+    convertHTML("Dolce & Gabbana");
+  ```
+### Sum All Odd Fibonacci Numbers
+```js
+function sumFibs(num) {
+    // Perform checks for the validity of the input
+    if (num < 0) return -1;
+    if (num === 0 || num === 1) return 1;
+
+    // Create an array of fib numbers till num
+    const arrFib = [1, 1];
+    let nextFib = 0;
+    
+    // We put the new Fibonacci numbers to the front so we
+    // don't need to calculate the length of the array on each
+    // iteration
+    while((nextFib = arrFib[0] + arrFib[1]) <= num) {
+        arrFib.unshift(nextFib);
+    }
+    /////注意这个思路 用变化中的arry的特性 代替i，高级**
+
+    //js 加法运算 用reduc实现
+    // Sum only the odd numbers and return the value
+    return arrFib.reduce((acc, curr) => {
+        return acc + curr * (curr % 2); //简单粗暴的判断奇数偶数的方法 高级
+    });
+}
+
+// test here
+sumFibs(4);
+```
+### Sum All Primes 
+```js
+const set = new Set(['foo', 'bar', 'baz', 'foo']);
+Array.from(set);
+// [ "foo", "bar", "baz" ]
+```
+```js
+function sumPrimes(num) {
+  // step 1	
+  let arr = Array.from({length: num+1}, (v, k) => k).slice(2); 
+  // step 2  find a primes Func
+  let onlyPrimes = arr.filter( (n) => { 
+    let m = n-1;
+    while (m > 1 && m >= Math.sqrt(n)) { 
+      if ((n % m) === 0) 
+        return false;
+        m--;
+    }
+      return true;
+  });
+  // step 3
+  return onlyPrimes.reduce((a,b) => a+b); 
+}
+// test here
+sumPrimes(977);
+```
+### range()
+```js
+const range = (start, stop, step) => Array.from({ length: (stop - start) / step + 1}, (_, i) => start + (i * step));
+```
+```js
+range('A'.charCodeAt(0), 'Z'.charCodeAt(0), 1).map(x => String.fromCharCode(x));
+```
+### Smallest Common Multiple
+```js
+function smallestCommons(arr) {
+  // range
+  let min = Math.min.apply(null, arr);
+  let max = Math.max.apply(null, arr);
+
+  let smallestCommon = lcm(min, min + 1);
+
+  while(min < max) {
+    min++;
+    smallestCommon = lcm(smallestCommon, min);
+  }
+
+  return smallestCommon;
+}
+/**
+ * Calculates Greatest Common Divisor
+ * of two nubers using Euclidean algorithm
+ * https://en.wikipedia.org/wiki/Euclidean_algorithm
+ */
+function gcd(a, b) {
+  while (b > 0) {
+    let tmp = a;
+    a = b;
+    b = tmp % b;
+  }
+  return a;
+}
+/**
+ * Calculates Least Common Multiple
+ * for two numbers utilising GCD
+ */
+function lcm(a, b) {
+  return (a * b / gcd(a, b));
+}
+// test here
+smallestCommons([1,5]);
+```
+### Drop it
+```js
+//此思路很高级 可以一用
+function dropElements(arr, func) {
+  while(arr.length > 0 && !func(arr[0])) {
+    arr.shift();
+  }
+  return arr;
+}
+
+```
+### Steamroller
+```js
+
+function steamrollArray(arr) {
+  let flat = [].concat(...arr);
+  return flat.some(m=>Array.isArray(m)) ? steamrollArray(flat) : flat;
+}
+
+steamrollArray([1, [2], [3, [[4]]]]);
+----------------
+function steamrollArray(arr) {
+  return arr.toString()
+    .replace(',,', ',')       // "1,2,,3" => "1,2,3"
+    .split(',')               // ['1','2','3']
+    .map(function(v) {
+      if (v == '[object Object]') { // bring back empty objects
+        return {};
+      } else if (isNaN(v)) {        // if not a number (string)
+        return v;
+      } else {
+        return parseInt(v);         // if a number in a string, convert it
+      }
+    });
+}
+---
+```
+- First we turn the `array` to a `string`, which will give us a string of numbers seperated by a comma, double comma if there was an empty array and literal object text if there was an object, which we can fix it later in our if statement.
+
+### Binary Agents
+```js
+ function binaryAgent(str) {
+      return String.fromCharCode(...str.split(" ").map(function(char){ return parseInt(char, 2); }));
+    }
+
+    // test here
+    binaryAgent("01000001 01110010 01100101 01101110 00100111 01110100 00100000 01100010 01101111 01101110 01100110 01101001 01110010 01100101 01110011 00100000 01100110 01110101 01101110 00100001 00111111");
+```
+
+- However fromCharCode() expects a series of numbers rather than an Array! We can use ES6 Spread Operator to pass in an Array of numbers as individual numbers. See here for more info; Spread Operator
+### Everything Be True
+```js
+function truthCheck(collection, pre) {
+  // Is everyone being true?
+  return collection.every(m=>m[pre]);
+}
+```
+### Arguments Optional
+```js
+function addTogether(...args) {
+      return args.some(n => typeof n !== 'number') ? 
+        undefined: 
+        args.length > 1 ?
+          args.reduce((acc, n) => acc += n, 0):
+          (n) => typeof n === "number" ? 
+            n + args[0]:
+            undefined;
+    }
+```
+### Make a Person
+```js
+var Person = function(firstAndLast) {
+  var fullName = firstAndLast;
+
+  this.getFirstName = function() {
+    return fullName.split(" ")[0];
+  };
+
+  this.getLastName = function() {
+    return fullName.split(" ")[1];
+  };
+
+  this.getFullName = function() {
+    return fullName;
+  };
+
+  this.setFirstName = function(name) {
+    fullName = name + " " + fullName.split(" ")[1];
+  };
+
+  this.setLastName = function(name) {
+    fullName = fullName.split(" ")[0] + " " + name;
+  };
+
+  this.setFullName = function(name) {
+    fullName = name;
+  };
+};
+
+var bob = new Person('Bob Ross');
+bob.getFullName();
+```
+### Map the Debris
+```js
+function orbitalPeriod(arr) {
+  var GM = 398600.4418;
+  var earthRadius = 6367.4447;
+
+  // Loop through each item in the array arr
+  arr.forEach(function(item) {
+    // Calculate the Orbital period value
+    var tmp = Math.round(2 * Math.PI * Math.sqrt(Math.pow(earthRadius + item.avgAlt, 3) / GM));
+    //Delete the avgAlt property
+    delete item.avgAlt;
+    //Add orbitalPeriod property
+    item.orbitalPeriod = tmp;
+  });
+  return arr;
+}
+
+// test here
+orbitalPeriod([{name : "sputnik", avgAlt : 35873.5553}]);
+```
+
 ## JavaScript Algorithms and Data Structures Projects
