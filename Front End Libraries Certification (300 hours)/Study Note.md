@@ -102,6 +102,85 @@ navigation
 
 
 ## jQuery
+### Introduction to jQuery
+- jQuery is a light`weight, "write less, do more",JavaScript library`. The purpose of jQuery is to make it much easier to use JavaScript on your website. jQuery takes a lot of common tasks that require many lines of JavaScript code to accomplish, and `wraps` them into `methods` that you can call `with a single line of code`.
+- jQuery is `one` of the many `libraries` for `JavaScript`. It is designed to `simplify` scripting done `on` the `client` side. jQuery's most `recognizable` `characteristic` is its dollar sign `($)` syntax. With it, you can `easily` manipulate `elements`, create `animations` and handle `input events`.
+### Learn How Script Tags and Document Ready Work
+- Now we're ready to learn jQuery, `the most popular JavaScript tool` of all time.
+  - Your browser will run `any` JavaScript `inside` a `script element`, including `jQuery`.
+  - The `important` thing to know is that `code` you put `inside` this `function` will run `as soon as` your browser `has loaded` your page.
+
+### Target HTML Elements with Selectors Using jQuery
+- `document ready function.`
+  - `$`, usually referred to as a `dollar sign operator`, or as `bling`.
+  - jQuery often `selects` an `HTML` element with a `selector`, then does something to that element.
+
+### Target Elements by Class Using jQuery
+```js
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+  });
+```
+### Target Elements by id Using jQuery
+### Delete Your jQuery Functions
+### Target the Same Element with Multiple jQuery Selectors
+### Remove Classes from an Element with jQuery
+### Change the CSS of an Element Using jQuery
+```js
+<script>
+  $(document).ready(function() {
+    $("button").addClass("animated bounce");
+    $(".well").addClass("animated shake");
+    $("#target3").addClass("animated fadeOut");
+    $("button").removeClass("btn-default");
+
+  });
+</script>
+```
+### Disable an Element Using jQuery
+```js
+<script>
+  $(document).ready(function() {
+    $("#target1").css("color", "red");
+    $("#target1").prop("disabled", true)
+  });
+</script>
+```
+### Change Text Inside an Element Using jQuery
+- jQuery has a function called` .html()` that lets you `add HTML tags` and `text` within an element. `Any content previously` within the element will be completely `replaced` with the content you provide using this function.
+```js
+<script>
+  $(document).ready(function() {
+    $("#target1").css("color", "red");
+    $("h3").html("<em>jQuery Playground</em>");
+  });
+</script>
+```
+### Remove an Element Using jQuery
+### Use appendTo to Move Elements with jQuery
+### Clone an Element Using jQuery
+### Target the Parent of an Element Using jQuery
+### Target the Children of an Element Using jQuery
+### Target a Specific Child of an Element Using jQuery
+### Target Even Elements Using jQuery
+### Use jQuery to Modify the Entire Page
+```js
+<script>
+  $(document).ready(function() {
+    $("#target1").css("color", "red");
+    $("#target1").prop("disabled", true);
+    $("#target4").remove();
+    $("#target2").appendTo("#right-well");
+    $("#target5").clone().appendTo("#left-well");
+    $("#target1").parent().css("background-color", "red");
+    $("#right-well").children().css("color", "orange");
+    $("#left-well").children().css("color", "green");
+    $(".target:nth-child(2)").addClass("animated bounce");
+    $(".target:even").addClass("animated shake");
+  });
+  $("body").addClass("animated fadeOut");
+</script>
+```
 
 ## Sass
 
