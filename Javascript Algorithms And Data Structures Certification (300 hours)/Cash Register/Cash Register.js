@@ -81,7 +81,3 @@ checkCashRegister(14.70, 20.00, [
     ["TWENTY", 60.00],
     ["ONE HUNDRED", 100.00]
 ]);
-//Reduce 
-/**
- * A value to use as the first argument to the first call of the callback. If no initialValue is supplied, the first element in the array will be used. Calling reduce() on an empty array without an initialValue will throw a TypeError.
- */
