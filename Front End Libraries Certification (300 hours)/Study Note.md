@@ -183,6 +183,145 @@ navigation
 ```
 
 ## Sass
+### Introduction to the Sass Challenges
+- `Sass`, or `"Syntactically Awesome StyleSheets"`, is a language extension of CSS. It adds features that aren't available using basic CSS syntax. Sass makes it easier for developers to simplify and maintain the style sheets for their projects.
+
+- `Sass` can `extend` the `CSS` language because it is a `preprocessor`. It takes code written using Sass syntax, and `converts` it `into` basic `CSS`. This allows you to create `variables`, nest CSS rules into others, and `import` other Sass files, among other things. The result is more `compact`, `easier` to `read` `code`.
+
+- There are `two syntaxes` available for `Sass`. The `first`, known as `SCSS (Sassy CSS)` and used throughout these challenges, is an extension of the syntax of CSS. This means that every valid CSS stylesheet is a valid SCSS file with the same meaning. Files using this syntax have the .scss extension.
+
+- The `second` and older syntax, known as the `indented syntax` (or sometimes just "`Sass`"), uses `indentation` rather than `brackets` to indicate nesting of selectors, and newlines rather than semicolons to separate properties. Files using this syntax have the .sass extension.
+
+This section introduces the basic features of `Sass`.
+### Store Data with Sass Variables
+- In `JavaScript`, variables are defined using the `let` and `const` keywords. In `Sass`, variables start with a `$` followed by the variable name.
+  - One example where variables are useful is when a number of `elements` `need` to be the `same color`. If that color is changed, the `only place to edit` the code is the variable value.
+```js
+$headings-color: green;
+//To use variables:
+h1 {
+  font-family: $main-fonts;
+  color: $headings-color;
+}
+```
+### Nest CSS with Sass
+- For a `large project`, the CSS file will have many lines and rules. This is where nesting can help `organize` your `code` by placing `child` style rules within the respective `parent` elements:
+  - There are four different combinators in CSS:
+    - descendant selector (space)
+      - the descendant selector matches all elements that are descendants of a specified element.
+    - child selector (>)
+      - The child selector selects all elements that are the immediate children of a specified element.
+    - adjacent sibling selector (+)
+      - The adjacent sibling selector selects all elements that are the adjacent siblings of a specified element.
+      - Sibling elements must have the same parent element, and "adjacent" means "immediately following".
+    - general sibling selector (~)
+      - The general sibling selector selects all elements that are siblings of a specified element.
+```js
+nav {
+  background-color: red;
+}
+
+nav ul {
+  list-style: none;
+}
+
+nav ul li {
+  display: inline-block;
+}
+---------------
+nav {
+  background-color: red;
+
+  ul {
+    list-style: none;
+
+    li {
+      display: inline-block;
+    }
+  }
+}
+```
+### Create Reusable CSS with Mixins
+- `Newer CSS features` take time before they are fully adopted and ready to use in all browsers. As features are added to browsers, CSS rules using them may `need` `vendor prefixes.` Consider "box-shadow":
+```cs
+@mixin box-shadow($x, $y, $blur, $c){ 
+  -webkit-box-shadow: $x, $y, $blur, $c;
+  -moz-box-shadow: $x, $y, $blur, $c;
+  -ms-box-shadow: $x, $y, $blur, $c;
+  box-shadow: $x, $y, $blur, $c;
+}
+div {
+  @include box-shadow(0px, 0px, 4px, #fff);
+}
+```
+### Use @if and @else to Add Logic To Your Styles
+
+```cs
+@mixin text-effect($val) {
+  @if $val == danger {
+    color: red;
+  }
+  @else if $val == alert {
+    color: yellow;
+  }
+  @else if $val == success {
+    color: green;
+  }
+  @else {
+    color: black;
+  }
+}
+```
+### Use @for to Create a Sass Loop
+- @for is used in `two ways`: `"start through end"` or `"start to end"`. 
+  - The main `difference` is that "start to end" `excludes` the `end number`, and "start through end" `includes` the `end number`.
+  - This is a powerful way to create `a grid layout`. Now you have twelve options for column widths available as CSS classes.
+```cs
+@for $i from 1 through 12 {
+  .col-#{$i} { width: 100%/12 * $i; }
+}
+---------------
+//The #{$i} part is the syntax to combine a variable (i) with text to make a string. When the Sass file is converted to CSS, it looks like this:
+.col-1 {
+  width: 8.33333%;
+}
+
+.col-2 {
+  width: 16.66667%;
+}
+
+...
+
+.col-12 {
+  width: 100%;
+}
+```
+### Use @each to Map Over Items in a List
+```cs
+@each $color in blue, red, green {
+  .#{$color}-text {color: $color;}
+}
+----
+$colors: (color1: blue, color2: red, color3: green);
+
+@each $key, $color in $colors {
+  .#{$color}-text {color: $color;}
+}
+```
+`#{$col}`
+### Apply a Style Until a Condition is Met with @while
+```cs
+$x: 1;
+@while $x < 13 {
+  .col-#{$x} { width: 100%/12 * $x;}
+  $x: $x + 1;
+}
+```
+### Split Your Styles into Smaller Chunks with Partials
+```js
+
+```
+### Extend One Set of CSS Styles to Another Element
 
 ## React
 
