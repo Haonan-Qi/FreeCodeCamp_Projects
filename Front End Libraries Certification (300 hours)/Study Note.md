@@ -806,8 +806,8 @@ class Navbar extends React.Component {
   render() {
     return (
     <div>
-      // Since we passed in the CamperBot state value into the the NavBar component above
-      // the h1 element below will render the value passed from state
+      // Since we ###  in the CamperBot state value into the the NavBar component above
+      // the h1 element below will render the value ###  from state
       <h1>Hello, my name is: {this.props.name}</h1>
     </div>
     );
@@ -1446,7 +1446,225 @@ ReactDOMServer.renderToString(<App />);
 ```
 
 ## Redux
+### Introduction to the Redux Challenges
+- Redux is a `predictable` `state container` for `JavaScript` `apps`. It helps you write applications that `behave` `consistently`, `run` in `different` `environments` (`client`, `server`, and `native`), and are easy to test. While you `can` use Redux `with` `any` `view library`, it's introduced here before being combined with React.
+### Create a Redux Store
+`Redux.createStore(reducer)`
+```js
+const store = Redux.createStore(reducer)
+```
+### Get State from the Redux Store
+`store.getState()`
+### Define a Redux Action
+- Since Redux is a state management framework, `updating state` is one of its `core` tasks.
+- In Redux, `all` state `updates` are `triggered by` dispatching `actions`. 
+  - An `action` is simply a `JavaScript object` that contains `information` about an `action event` that has occurred. 
+  - The Redux store `receives` these action `objects`, then `updates` its `state` `accordingly`. 
+  - Sometimes a Redux action `also` `carries` `some` `data`. For example, the action carries a username after a user logs in. While the `data` is `optional`, actions `must` `carry` a `type` `property` that specifies the '`type`' of `action` that occurred.
+
+- Think of Redux actions as messengers that deliver information about events happening in your app to the Redux store. The store then conducts the business of updating state based on the action that occurred.
+### Define an Action Creator
+- After creating an action, the next step is `sending` the `action` to the Redux `store` so it can update its state. In Redux, you define `action creators` to `accomplish this`. 
+- `An action creator` is simply `a JavaScript function` that `returns` an `action`. In other words, action creators create objects that `represent action events`.
+### Dispatch an Action Event
+```js
+store.dispatch(actionCreator());
+store.dispatch({ type: 'LOGIN' });
+```
+### Handle an Action in the Store
+```js
+const LOGIN = 'blahblahblah';
+const LOGOUT = 'wahwahwahwah';
+
+const loginUser = () => {
+  return {
+    type: LOGIN
+  }
+};
+
+const logoutUser = () => {
+  return {
+    type: LOGOUT
+  }
+};
+
+const authReducer = (state = defaultState, action) => {
+
+  switch (action.type) {
+
+    case LOGIN:
+      return {
+        authenticated: true
+      }
+
+    case LOGOUT:
+      return {
+        authenticated: false
+      }
+
+    default:
+      return state;
+
+  }
+
+};
+```
+### Use a Switch Statement to Handle Multiple Actions
+### Use const for Action Types
+```js
+const LOGIN = 'blahblahblah';
+const LOGOUT = 'wahwahwahwah';
+
+const loginUser = () => {
+  return {
+    type: LOGIN
+  }
+};
+
+const logoutUser = () => {
+  return {
+    type: LOGOUT
+  }
+};
+
+const authReducer = (state = defaultState, action) => {
+
+  switch (action.type) {
+
+    case LOGIN:
+      return {
+        authenticated: true
+      }
+
+    case LOGOUT:
+      return {
+        authenticated: false
+      }
+
+    default:
+      return state;
+
+  }
+
+};
+```
+### Register a Store Listener
+- Another method you have access to on the Redux store object is `store.subscribe()`. This allows you to subscribe listener functions to the store, which are `called` `whenever an action is dispatched against the store`. 
+- `One` simple `use` for this `method` is to subscribe a function to your store that simply logs a message `every time` an `action` is `received` and the `store` is `updated`.
+### Combine Multiple Reducers
+Redux.combineReducers({
+  key:reducer1,
+  key2:reducer2
+})
+```js
+const rootReducer = Redux.combineReducers({
+  auth: authenticationReducer,
+  notes: notesReducer
+});
+```
+### Send Action Data to the Store
+```js
+const ADD_NOTE = 'ADD_NOTE';
+
+const notesReducer = (state = 'Initial State', action) => {
+  switch(action.type) {
+    // change code below this line
+    case ADD_NOTE:
+      return action.text;
+      break;
+    // change code above this line
+    default:
+      return state;
+  }
+};a
+
+const addNoteText = (note) => {
+  // change code below this line
+  return {
+  type:ADD_NOTE,
+  text:note
+  }
+
+  // change code above this line
+};
+
+const store = Redux.createStore(notesReducer);
+
+console.log(store.getState());
+store.dispatch(addNoteText('Hello!'));
+console.log(store.getState());
+```
+### Use Middleware to Handle Asynchronous Actions
+```js
+const REQUESTING_DATA = 'REQUESTING_DATA'
+const RECEIVED_DATA = 'RECEIVED_DATA'
+
+const requestingData = () => { return {type: REQUESTING_DATA} }
+const receivedData = (data) => { return {type: RECEIVED_DATA, users: data.users} }
+
+const handleAsync = () => {
+  return function(dispatch) {
+    // dispatch request action here
+    dispatch(requestingData())
+    setTimeout(function() {
+      let data = {
+        users: ['Jeff', 'William', 'Alice']
+      }
+      // dispatch received data action here
+    dispatch(receivedData(data))
+    }, 2500);
+  }
+};
+
+const defaultState = {
+  fetching: false,
+  users: []
+};
+
+const asyncDataReducer = (state = defaultState, action) => {
+  switch(action.type) {
+    case REQUESTING_DATA:
+      return {
+        fetching: true,
+        users: []
+      }
+    case RECEIVED_DATA:
+      return {
+        fetching: false,
+        users: action.users
+      }
+    default:
+      return state;
+  }
+};
+
+const store = Redux.createStore(
+  asyncDataReducer,
+  Redux.applyMiddleware(ReduxThunk.default)
+);
+```
+### Write a Counter with Redux
+### Never Mutate State
+### Use the Spread Operator on Arrays
+[...obj.slice(0,n),obj.slice(n+1)]
+### Remove an Item from an Array
+[...obj.slice(0,n),obj.slice(n+1)]
+### Copy an Object with Object.assign
+`const newObject = Object.assign({}, obj1, obj2);`
 
 ## React and Redux
+###Introduction to the React and Redux Challenges
+- This series of challenges introduces how to use Redux with React.
+- In a React Redux app, you create `a single` Redux `store` that `manages` the `state` of your entire app. Your React components `subscribe` to `only` the `pieces` of `data` in the store that are `relevant` to `their` `role`. `Then`, you `dispatch` actions directly from React components, which then trigger store updates.
 
+### Getting Started with React Redux
+### Manage State Locally First
+### Extract State Logic to Redux
+### Use Provider to Connect Redux to React
+### Map State to Props
+### Map Dispatch to Props
+### Connect Redux to React
+### Connect Redux to the Messages App
+### Extract Local State into Redux
+### Moving Forward From Here
 ## Front End Libraries Projects
