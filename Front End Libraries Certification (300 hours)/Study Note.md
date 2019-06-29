@@ -192,7 +192,7 @@ navigation
 
 - The `second` and older syntax, known as the `indented syntax` (or sometimes just "`Sass`"), uses `indentation` rather than `brackets` to indicate nesting of selectors, and newlines rather than semicolons to separate properties. Files using this syntax have the .sass extension.
 
-This section introduces the basic features of `Sass`.
+- This section introduces the basic features of `Sass`.
 ### Store Data with Sass Variables
 - In `JavaScript`, variables are defined using the `let` and `const` keywords. In `Sass`, variables start with a `$` followed by the variable name.
   - One example where variables are useful is when a number of `elements` `need` to be the `same color`. If that color is changed, the `only place to edit` the code is the variable value.
@@ -319,11 +319,1131 @@ $x: 1;
 ```
 ### Split Your Styles into Smaller Chunks with Partials
 ```js
-
+//"_mixins.scss"
+@import 'mixins'
 ```
-### Extend One Set of CSS Styles to Another Element
+###    One Set of CSS Styles to Another Element
+```js
+.panel{
+  background-color: red;
+  height: 70px;
+  border: 2px solid green;
+}
+
+.big-panel{
+  @extend .panel;
+  width: 150px;
+  font-size: 2em;
+}
+```
 
 ## React
+### Introduction to the React Challenges
+- React, `popularized` by `Facebook`, is an `open-source` JavaScript `library` for `building user interfaces`. It is used to `create components`, `handle state and props`, `utilize event listeners` and `certain life cycle methods` to `update data` as it changes.
+
+- React combines HTML with JavaScript functionality to create its `own markup language`, `JSX`. This section will introduce you to all of these concepts and how to implement them for use with your own projects.
+
+  - React is an Open Source view library `created` and `maintained` by `Facebook`
+### Create a Simple JSX Element
+- React uses a `syntax extension of JavaScript` called `JSX` that allows you to `write HTML` directly `within JavaScript`. 
+  - It lets you `use the full programmatic power` of `JavaScript` within HTML, and helps to `keep your code readable`. 
+- For the most part, `JSX` is `similar` to the `HTML` that you have already learned, however there are `a few key differences` that will be covered throughout these challenges.
+- For instance, because JSX is a `syntactic extension` of JavaScript, you can actually write `JavaScript` `directly` `within` `JSX`.
+  - To do this, you simply `include` the `code` you `want` to be treated `as` `JavaScript` within `curly braces:` { 'this is treated as JavaScript code' }. Keep this in mind, since it's used in several future challenges.
+  - However, because JSX is `not` `valid` `JavaScript`, JSX code must be `compiled into` JavaScript
+    - The `transpiler` `Babel` is a popular tool for this process. 
+
+### Create a Complex JSX Element
+- One important thing to know about `nested` `JSX` is that it must return a `single` `element`.
+- For instance, several JSX elements written as siblings with no parent wrapper element will not transpile.
+```jsx
+<div>
+  <p>Paragraph One</p>
+  <p>Paragraph Two</p>
+  <p>Paragraph Three</p>
+</div>
+----------
+<p>Paragraph One</p>
+<p>Paragraph Two</p>
+<p>Paragraph Three</p>
+```
+### Add Comments in JSX
+`{/* */}`
+### Render HTML Elements to the DOM
+```js
+const JSX = (
+  <div>
+    <h1>Hello World</h1>
+    <p>Lets render this to the DOM</p>
+  </div>
+);
+// change code below this line
+ReactDOM.render(JSX, document.getElementById(`challenge-node`))
+```
+### Define an HTML Class in JSX
+- `One key difference` in `JSX` is that you `can no longer` use the word class to define HTML classes. This is because `class` is a `reserved word` in JavaScript. Instead, JSX uses `className`.
+```js
+const JSX = (
+  <div className="myDiv">
+    <h1>Add a class to this div</h1>
+  </div>
+);
+```
+### Learn About Self-Closing JSX Tags
+- For example the line-break tag can be written as <br> or as <br />, but should never be written as <br></br>, since it doesn't contain any content.
+- In JSX, the rules are a little different
+  - The line-break tag, for example, must always be written as <br /> in order to be valid JSX that can be transpiled
+
+
+### Create a Stateless Functional Component
+- `Components` are the `core` `of` `React`. `Everything` in `React` `is a` `component` and here you will learn how to create one.
+- There are `two ways` to create a React component.
+  - The `first way` is to use a JavaScript function
+    - Defining a component in this way creates `a stateless functional component`
+    - For now, think of a stateless component as one that `can receive data and render it`, but `does not` `manage` or `track` `changes` to that `data`. 
+    - To create a component with a `function`, you simply write a `JavaScript function` that `returns` either `JSX` or `null`
+    ```js
+    const DemoComponent = function() {
+      return (
+        <div className='customClass' />
+      );
+    };
+    ```
+    - Because a `JSX` component `represents` `HTML`, you could `put` several `components` `together` to create a `more` `complex` HTML page. This is `one` of the `key advantages` of the component architecture React provides. It allows you to compose your `UI` from many `separate`, `isolated` `components`. This makes it easier to `build` and `maintain` `complex` user interfaces.
+  - The `other way` to define a React component is with the `ES6` `class` `syntax`. In the following example, `Kitten extends React.Component`:
+```js
+class Kitten extends React.Component {
+constructor(props) {
+  super(props);
+}
+
+render() {
+  return (
+    <h1>Hi</h1>
+  );
+}
+}
+```
+- It is best practice to call a component's constructor with `super`, and pass `props` to both. 
+### Create a React Component
+### Create a Component with Composition
+```js
+const ChildComponent = () => {
+  return (
+    <div>
+      <p>I am the child</p>
+    </div>
+  );
+};
+
+class ParentComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>I am the parent</h1>
+        { /* change code below this line */ }
+        <ChildComponent />
+
+        { /* change code above this line */ }
+      </div>
+    );
+  }
+};
+```
+### Use React to Render Nested Components
+-  You break down your UI into its basic building blocks, and those pieces become the components
+  - This helps to separate the code responsible for the UI from the code responsible for handling your application logic. It can greatly simplify the development and maintenance of complex projects.
+
+### Compose React Components
+```js
+const TypesOfFruit = () => {
+  return (
+    <div>
+      <h2>Fruits:</h2>
+      <ul>
+        <li>Apples</li>
+        <li>Blueberries</li>
+        <li>Strawberries</li>
+        <li>Bananas</li>
+      </ul>
+    </div>
+  );
+};
+
+const Fruits = () => {
+  return (
+    <div>
+      { /* change code below this line */ }
+      <TypesOfFruit />
+      { /* change code above this line */ }
+    </div>
+  );
+};
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        { /* change code below this line */ }
+        <Fruits />
+        { /* change code above this line */ }
+      </div>
+    );
+  }
+};
+```
+### Render a Class Component to the DOM
+```js
+
+class TypesOfFood extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Types of Food:</h1>
+        {/* change code below this line */}
+
+        {/* change code above this line */}
+      </div>
+    );
+  }
+};
+
+// change code below this line
+ReactDOM.render(<TypesOfVehicles />,'node-id')//Note this
+```
+### Write a React Component from Scratch
+```js
+class FirstComponent extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  //function later
+  render() {
+    return (
+      // The JSX code you put here is what your component will render
+    );
+  }
+};
+```
+### Pass Props to a Stateless Functional Component
+```js
+const CurrentDate = (props) => {
+  return (
+    <div>
+      <p>The current date is: {props.date}</p>
+    </div>
+  );
+};
+
+class Calendar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>What date is it?</h3>
+        <CurrentDate date={Date()} />
+      </div>
+    );
+  }
+};
+```
+### Pass an Array as Props
+```js
+<ParentComponent>
+  <ChildComponent colors={["green", "blue", "red"]} />
+</ParentComponent>
+const ChildComponent = (props) => <p>{props.colors.join(', ')}</p>
+```
+### Use Default Props
+```js
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <h1>Shopping Cart Component</h1>
+    </div>
+  )
+};
+// change code below this line
+ShoppingCart.defaultProps = {
+  items: 0
+}
+```
+### Override Default Props
+```js
+<Component propsName={Value}/>
+<Items quantity={50}/>
+```
+### Use PropTypes to Define the Props You Expect
+- Note: As of React v15.5.0, PropTypes is imported independently from React, like this: import React, { PropTypes } from 'react';
+```js
+MyComponent.propTypes = { handleClick: PropTypes.func.isRequired }
+**itemName**.propTypes = {
+  **props**: PropTypes.**dataType**.isRequired
+};
+```
+### Access Props Using this.props
+- The ES6 class component uses a slightly different convention to access props.
+- `Anytime` you refer to a `class` `component` `within` `itself`, you use the `this` keyword. 
+`{this.props.data}`
+### Review Using Props with Stateless Functional Components
+- A common pattern is to try to `minimize` `statefulness` and to `create` `stateless` functional components wherever possible. 
+### Create a Stateful Component
+
+### Render State in the User Interface
+- When state data updates, it triggers a re-render of the components using that data - including child components that received the data as a prop.
+  - React updates the actual DOM, but only where necessary. This means you don't have to worry about changing the DOM. You simply declare what the UI should look like.
+  - Note that if you make a component stateful, no other components are aware of its state. Its state is completely `encapsulated`, or `local` to that `component`, unless you `pass` `state` `data` `to` a child `component` as `props`
+
+### Render State in the User Interface Another Way
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'freeCodeCamp'
+    }
+  }
+  render() {
+    // change code below this line
+    const name = this.state.name;
+    // change code above this line
+    return (
+      <div>
+        { /* change code below this line */ }
+        {name}
+        { /* change code above this line */ }
+      </div>
+    );
+  }
+};
+```
+### Set State with this.setState
+### Bind 'this' to a Class Method
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      itemCount: 0
+    };
+    // change code below this line
+    this.addItem = this.addItem.bind(this)
+    // change code above this line
+  }
+  addItem() {
+    this.setState({
+      itemCount: this.state.itemCount + 1
+    });
+  }
+  render() {
+    return (
+      <div>
+        { /* change code below this line */ }
+        <button onClick={this.addItem}>Click Me</button>
+        { /* change code above this line */ }
+        <h1>Current Item Count: {this.state.itemCount}</h1>
+      </div>
+    );
+  }
+};
+```
+### Use State to Toggle an Element
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      visibility: false
+    };
+    // change code below this line
+    this.toggleVisibility = this.toggleVisibility.bind(this);
+    // change code above this line
+  }
+  // change code below this line
+  toggleVisibility() {
+    if (this.state.visibility == true) {
+    this.setState({
+      visibility: false
+    });} else {
+      this.setState({
+        visibility: true
+      })
+    }
+  }
+  // change code above this line
+  render() {
+    if (this.state.visibility) {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+          <h1>Now you see me!</h1>
+        </div>
+      );
+    } else {
+      return (
+        <div>
+          <button onClick={this.toggleVisibility}>Click Me</button>
+        </div>
+      );
+    }
+  }
+};
+```
+### Write a Simple Counter
+### Create a Controlled Input
+```js
+class ControlledInput extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    // change code below this line
+    // change code above this line
+  }
+  // change code below this line
+handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+}
+  
+  // change code above this line
+  render() {
+    return (
+      <div>
+        { /* change code below this line */}
+    <input value={this.state.input} onChange = {this.handleChange.bind(this)}/>
+        { /* change code above this line */}
+        <h4>Controlled Input:</h4>
+        <p>{this.state.input}</p>
+      </div>
+    );
+  }
+};
+```
+
+### Create a Controlled Form
+```js
+class MyForm extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      submit: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault(); //*******Note this
+    this.setState({
+      input: '',
+      submit: this.state.input
+    });
+  }
+
+  render() {
+    return (
+      <div>
+        <form onSubmit={this.handleSubmit}>
+          { /* change code below this line */ }
+          <input value={this.state.input} onChange={this.handleChange}/>
+          { /* change code above this line */ }
+          <button type='submit'>Submit!</button>
+        </form>
+        { /* change code below this line */ }
+        <h1>{this.state.submit}</h1>
+        { /* change code above this line */ }
+      </div>
+    );
+  }
+};
+```
+### Pass State as Props to Child Components
+```js
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: 'CamperBot'
+    }
+  }
+  render() {
+    return (
+       <div>
+         // Here we will call this.state.name in order to pass the value of CamperBot
+         // to the NavBar component
+         <Navbar name={this.state.name} />
+       </div>
+    );
+  }
+};
+
+class Navbar extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+    <div>
+      // Since we passed in the CamperBot state value into the the NavBar component above
+      // the h1 element below will render the value passed from state
+      <h1>Hello, my name is: {this.props.name}</h1>
+    </div>
+    );
+  }
+};
+```
+### Pass a Callback as Props
+```js
+class MyApp extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: ''
+    }
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({
+      inputValue: event.target.value
+    });
+  }
+  render() {
+    return (
+       <div>
+        { /* change code below this line */ 
+        <GetInput input={this.state.inputValue} handleChange={this.handleChange}/>
+        }
+        { /* change code above this line */ 
+        <RenderInput input={this.state.inputValue}/>
+        }
+       </div>
+    );
+  }
+};
+
+
+class GetInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Get Input:</h3>
+        <input
+          value={this.props.input}
+          onChange={this.props.handleChange}/>
+      </div>
+    );
+  }
+};
+
+class RenderInput extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <div>
+        <h3>Input Render:</h3>
+        <p>{this.props.input}</p>
+      </div>
+    );
+  }
+};
+```
+### Use the Lifecycle Method componentWillMount
+- React components have several special methods that provide opportunities to perform actions at specific points in the lifecycle of a component. 
+
+- componentWillMount()
+  - The componentWillMount() method is called before the render() method when a component is being mounted to the DOM. 
+- componentDidMount()
+  - This method is `called` `after a component is mounted to the DOM`
+  - The componentDidMount() method is also the best place to `attach` any `event listeners` you need to add for specific functionality. 
+- componentWillUnmount()
+  - It's good practice to use this lifecycle method to `do` any `clean up` on React components `before` they are `unmounted` and `destroyed`. 
+- componentWillReceiveProps()
+  - 
+shouldComponentUpdate()
+
+componentWillUpdate()
+
+componentDidUpdate()
+
+componentWillUnmount()
+
+### Use the Lifecycle Method componentDidMount
+- Most web developers, at some point, need to `call an API endpoint to retrieve data`. If you're working with React, it's important to know `where to perform this action`.
+
+- The best practice with React is to place `API calls or any calls to your server` in the lifecycle method `componentDidMount()`. 
+- This method is `called` `after a component is mounted to the DOM`. Any calls to `setState()` here will `trigger a re-rendering of your component.` When you `call an API in this method`, and `set your state with the data that the API returns`, it `will automatically trigger an update once you receive the data`.
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      activeUsers: null
+    };
+  }
+  componentDidMount() {
+    setTimeout( () => {
+      this.setState({
+        activeUsers: 1273
+      });
+    }, 2500);
+  }
+  render() {
+    return (
+      <div>
+        <h1>Active Users: {this.state.activeUsers}</h1>
+      </div>
+    );
+  }
+};
+```
+### Add Event Listeners
+- The componentDidMount() method is also the best place to attach any event listeners you need to add for specific functionality. React provides a `synthetic event system` which wraps the native event system present in browsers. This means that the synthetic event system behaves exactly the same regardless of the user's browser - even if the native events may behave differently between different browsers.
+
+- You've already been using some of these synthetic event handlers such as onClick(). React's synthetic event system is great to use for most interactions you'll manage on DOM elements. `However`, if you want to `attach` an `event` `handler` to the `document` or `window` objects, you `have to` do this `directly`.
+```JS
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: ''
+    };
+    this.handleEnter = this.handleEnter.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
+  }
+  // change code below this line
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleKeyPress)
+  }
+  componentWillUnmount() {
+    document.removeEventListener("keydown", this.handleKeyPress)
+  }
+  // change code above this line
+  handleEnter() {
+    this.setState({
+      message: this.state.message + 'You pressed the enter key! '
+    });
+  }
+  handleKeyPress(event) {
+    if (event.keyCode === 13) {
+      this.handleEnter();
+    }
+  }
+  render() {
+    return (
+      <div>
+        <h1>{this.state.message}</h1>
+      </div>
+    );
+  }
+};
+```
+### Manage Updates with Lifecycle Methods
+- Another lifecycle method is `componentWillReceiveProps()` which is `called` whenever a `component` is `receiving new props`
+- This method receives the `new props` as an argument, which is usually `written` as `nextProps`. You can use this argument and `compare with` `this.props` and perform actions before the component updates. For example, you may call setState() locally before the update is processed.
+- Another method is `componentDidUpdate()`, and is called immediately `after a component re-renders`. Note that `rendering` and `mounting` are considered `different` things in the component lifecycle. When a page `first loads`, all components are `mounted` and this is where methods like `componentWillMount()` and `componentDidMount()` are called. After this, `as state changes`, components `re-render` themselves. The next challenge covers this in more detail.
+
+### Optimize Re-Renders with shouldComponentUpdate
+```js
+class OnlyEvens extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log('Should I update?');
+     // change code below this line
+      if (nextProps.value % 2 == 0) {
+        return true;
+      }
+      return false;
+     // change code above this line
+  }
+  componentWillReceiveProps(nextProps) {
+    console.log('Receiving new props...');
+  }
+  componentDidUpdate() {
+    console.log('Component re-rendered.');
+  }
+  render() {
+    return <h1>{this.props.value}</h1>
+  }
+};
+
+class Controller extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      value: 0
+    };
+    this.addValue = this.addValue.bind(this);
+  }
+  addValue() {
+    this.setState({
+      value: this.state.value + 1
+    });
+  }
+  render() {
+    return (
+      <div>
+        <button onClick={this.addValue}>Add</button>
+        <OnlyEvens value={this.state.value}/>
+      </div>
+    );
+  }
+};
+```
+### Introducing Inline Styles
+```js
+class Colorful extends React.Component {
+  render() {
+    return (
+      <div style={{color: "yellow", fontSize: 16}}>Mellow Yellow</div>
+    );
+  }
+};
+```
+### Add Inline Styles in React
+- You may have noticed in the last challenge that there were several other syntax differences from HTML inline styles in addition to the style attribute set to a JavaScript object. First, the names of certain CSS style properties use camel case. For example, the last challenge set the size of the font with fontSize instead of font-size. Hyphenated words like font-size are invalid syntax for JavaScript object properties, so React uses camel case. As a rule, any hyphenated style properties are written using camel case in JSX.
+
+- All property value `length units` (like height, width, and fontSize) are a`ssumed to be in px` unless otherwise specified. If you want to use em, for example, you wrap the value and the units in quotes, like `{fontSize: "4em"}`. Other than the length values that default to px, `all other` property values should be `wrapped in quotes`.
+### Use Advanced JavaScript in React Render Method
+- You can also write JavaScript directly in your render methods, before the return statement, without inserting it inside of curly braces
+  - This is because it is not yet within the JSX code. When you want to use a variable later in the JSX code inside the return statement, you place the variable name inside curly braces.
+```js
+const inputStyle = {
+  width: 235,
+  margin: 5
+}
+
+class MagicEightBall extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      userInput: '',
+      randomIndex: ''
+    }
+    this.ask = this.ask.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  ask() {
+    if (this.state.userInput) {
+      this.setState({
+        randomIndex: Math.floor(Math.random() * 20),
+        userInput: ''
+      });
+    }
+  }
+  handleChange(event) {
+    this.setState({
+      userInput: event.target.value
+    });
+  }
+  render() {
+    const possibleAnswers = [
+      'It is certain',
+      'It is decidedly so',
+      'Without a doubt', 
+      'Yes, definitely',
+      'You may rely on it',
+      'As I see it, yes',
+      'Outlook good',
+      'Yes',
+      'Signs point to yes',
+      'Reply hazy try again',
+      'Ask again later',
+      'Better not tell you now',
+      'Cannot predict now',
+      'Concentrate and ask again',
+      'Don\'t count on it', 
+      'My reply is no',
+      'My sources say no',
+      'Most likely',
+      'Outlook not so good',
+      'Very doubtful'
+    ];
+    const answer = possibleAnswers[this.state.randomIndex];
+
+    return (
+      <div>
+        <input
+          type="text"
+          value={this.state.userInput}
+          onChange={this.handleChange}
+          style={inputStyle} /><br />
+        <button onClick={this.ask}>
+          Ask the Magic Eight Ball!
+        </button><br />
+        <h3>Answer:</h3>
+        <p>
+          { /* change code below this line */ }
+          <p>
+            {answer}          
+          </p>
+          { /* change code above this line */ }
+        </p>
+      </div>
+    );
+  }
+};
+```
+### Render with an If/Else Condition
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState({
+      display: !this.state.display
+    });
+  }
+  render() {
+    // change code below this line
+
+if (this.state.display === true) {
+  return (
+    <div>
+      <button onClick={this.toggleDisplay}>Toggle Display</button>
+      <h1>Displayed!</h1>
+    </div>
+  );
+}else {
+  return (
+    <div>
+      <button onClick={this.toggleDisplay}>Toggle Display</button>
+    </div>
+  )
+}
+
+  }
+};
+```
+### Use && for a More Concise Conditional
+```js
+{condition && <p>markup</p>}
+```
+- If the condition is true, the markup will be returned. If the condition is false, the operation will immediately return `false` after evaluating the condition and return `nothing`
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      display: true
+    }
+    this.toggleDisplay = this.toggleDisplay.bind(this);
+  }
+  toggleDisplay() {
+    this.setState({
+      display: !this.state.display
+    });
+  }
+  render() {
+    // change code below this line
+    return (
+       <div>
+         <button onClick={this.toggleDisplay}>Toggle Display</button>
+         {this.state.display && <h1>Displayed!</h1>} 
+       </div>
+    );
+  }
+};
+```
+### Use a Ternary Expression for Conditional Rendering
+```js
+
+const inputStyle = {
+  width: 235,
+  margin: 5
+}
+
+class CheckUserAge extends React.Component {
+  constructor(props) {
+    super(props);
+    // change code below this line
+      this.state = {
+        input: '',
+        userAge: ''
+      }
+    // change code above this line
+    this.submit = this.submit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(e) {
+    this.setState({
+      input: e.target.value,
+      userAge: ''
+    });
+  }
+  submit() {
+    this.setState({
+      userAge: this.state.input
+    });
+  }
+  render() {
+    const buttonOne = <button onClick={this.submit}>Submit</button>;
+    const buttonTwo = <button>You May Enter</button>;
+    const buttonThree = <button>You Shall Not Pass</button>;
+    return (
+      <div>
+        <h3>Enter Your Age to Continue</h3>
+        <input
+          style={inputStyle}
+          type="number"
+          value={this.state.input}
+          onChange={this.handleChange} /><br />
+        {
+    (this.state.userAge >= 18) ? buttonTwo : (this.state.userAge== '')? buttonOne: buttonThree
+        }
+      </div>
+    );
+  }
+};
+```
+### Render Conditionally from Props
+```js
+class Results extends React.Component {
+  constructor(props) {
+    super(props);
+  }
+  render() {
+    return (
+      <h1>
+  {
+    this.props.fiftyFifty
+  }
+  </h1>
+    )
+  };
+};
+
+class GameOfChance extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      counter: 1
+    }
+    this.handleClick = this.handleClick.bind(this);
+  }
+  handleClick() {
+  this.setState({
+    counter: this.state.counter + 1
+  });
+}
+  render() {
+ let expression = Math.random() > .5;
+     return (
+      <div>
+        <button onClick={this.handleClick}>Play Again</button>
+        { /* change code below this line */ }
+        {(expression == 1)? <Results fiftyFifty="You win!"/> : <Results fiftyFifty="You lose!"/> }
+
+        { /* change code above this line */ }
+        <p>{'Turn: ' + this.state.counter}</p>
+      </div>
+    );
+  }
+};
+```
+### Change Inline CSS Conditionally Based on Component State
+```js
+
+class GateKeeper extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: ''
+    };
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleChange(event) {
+    this.setState({ input: event.target.value })
+  }
+  render() {
+    let inputStyle = {
+      border: '1px solid black'
+    };
+    // change code below this line
+    if(this.state.input.length>=15){
+      inputStyle={
+        border:'3px solid red'
+      }
+    }
+    // change code above this line
+    return (
+      <div>
+        <h3>Don't Type Too Much:</h3>
+        <input
+          type="text"
+          style={inputStyle}
+          value={this.state.input}
+          onChange={this.handleChange} />
+      </div>
+    );
+  }
+};
+```
+### Use Array.map() to Dynamically Render Elements
+```js
+const textAreaStyles = {
+  width: 235,
+  margin: 5
+};
+
+class MyToDoList extends React.Component {
+  constructor(props) {
+    super(props);
+    // change code below this line
+    this.state = {
+      userInput: '',
+      toDoList: []
+    }
+    // change code above this line
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+  }
+  handleSubmit() {
+    const itemsArray = this.state.userInput.split(',');
+    this.setState({
+      toDoList: itemsArray
+    });
+  }
+  handleChange(e) {
+    this.setState({
+      userInput: e.target.value
+    });
+  }
+  render() {
+    const items = this.state.toDoList.map(i => <li>{i}</li>); // change code here
+    return (
+      <div>
+        <textarea
+          onChange={this.handleChange}
+          value={this.state.userInput}
+          style={textAreaStyles}
+          placeholder="Separate Items With Commas" /><br />
+        <button onClick={this.handleSubmit}>Create List</button>
+        <h1>My "To Do" List:</h1>
+        <ul>
+          {items}
+        </ul>
+      </div>
+    );
+  }
+};
+```
+### Give Sibling Elements a Unique Key Attribute
+```js
+
+const frontEndFrameworks = [
+  'React',
+  'Angular',
+  'Ember',
+  'Knockout',
+  'Backbone',
+  'Vue'
+];
+
+function Frameworks() {
+  const renderFrameworks = frontEndFrameworks.map((item) =>
+  <li key={item+1}>{item}</li>// Note this <array f elements>
+);
+  return (
+    <div>
+      <h1>Popular Front End JavaScript Frameworks</h1>
+      <ul>
+        {renderFrameworks}
+      </ul>
+    </div>
+  );
+};
+```
+### Use Array.filter() to Dynamically Filter an Array
+```js
+class MyComponent extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      users: [
+        {
+          username: 'Jeff',
+          online: true
+        },
+        {
+          username: 'Alan',
+          online: false
+        },
+        {
+          username: 'Mary',
+          online: true
+        },
+        {
+          username: 'Jim',
+          online: false
+        },
+        {
+          username: 'Sara',
+          online: true
+        },
+        {
+          username: 'Laura',
+          online: true
+        }
+      ]
+    }
+  }
+  render() {
+    const usersOnline = this.state.users.filter(e=>e.online==true)
+    const renderOnline = usersOnline.map(e=><li>{e.username}</li>);
+    return (
+       <div>
+         <h1>Current Online Users:</h1>
+         <ul>
+           {renderOnline}
+         </ul>
+       </div>
+    );
+  }
+};
+```
+### Render React on the Server with renderToString
+- So far, you have been rendering React components `on the client`. Normally, this is what you will always do. `However`, there are some use cases where it makes sense to `render` a React component on the `server`. Since React is a JavaScript `view` `library` and you can run JavaScript on the `server` with `Node`, this is possible. In fact, React provides a `renderToString()` method you can use for this purpose.
+- There are two key reasons why rendering on the server may be used in a real world app.
+  -  `First`, without doing this, your React apps would consist of a relatively empty HTML file and a large bundle of JavaScript when it's initially loaded to the browser. This may not be ideal for search engines that are trying to index the content of your pages so people can find you. 
+  - If you render the `initial` `HTML` `markup` on the server and send this to the client, the initial page load contains all of the page's markup which can be `crawled` `by` `search engines`.
+  - Second, this creates a `faster initial page load experience` `because` the rendered HTML is `smaller` than the JavaScript code of the entire app. React will still be able to recognize your app and manage it `after the initial load`.
+```js
+ReactDOMServer.renderToString(<App />);
+```
 
 ## Redux
 
