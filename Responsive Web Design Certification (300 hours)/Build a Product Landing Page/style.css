@@ -15,6 +15,26 @@
 body {
     background-color: white;
     font-family: 'SF Display', sans-serif;
+    animation: fadein 1s ease-in 1s 1 normal forwards;
+    opacity: 0;
+}
+@keyframes fadein{
+    100%{
+        opacity: 1;
+    }
+}
+
+.nav-link{
+    font-size:1.3em;
+}
+
+.nav-link:hover{
+    animation: in-size 1s ease-in-out 0s 1 normal forwards;   
+}
+@keyframes in-size{
+    100%{
+        font-size: 2em;
+    }
 }
 
 #fivegrains {
@@ -129,7 +149,14 @@ header {
 
 nav {
     font-weight: 400;
-    width: 40%
+    width: 40%;
+}
+
+
+@keyframes insize {
+    100%{
+        font-size: 2em;
+    }
 }
 
 @media (max-width: 650px) {
@@ -260,8 +287,7 @@ input {
 
 .Health_Concept_Introduction_Container {
     display: flex;
-    justify-content: space-between;
-    /* border: solid; */
+    justify-content: space-around;
     margin-bottom: 10px;
     box-shadow: 0 1px 6px 0 rgba(32, 33, 36, 0.28);
     padding-top: 10px;
