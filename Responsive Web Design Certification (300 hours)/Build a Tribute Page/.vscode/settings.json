@@ -1,0 +1,9 @@
+{
+    "editor.foldingStrategy": "indentation",
+    "files.autoSave": "onFocusChange",
+    "workbench.colorCustomizations": {
+        "editor.hoverHighlightBackground":"#685351de",
+        "editor.lineHighlightBackground": "#030705d3"
+    },
+    "liveServer.settings.port": 5501
+}

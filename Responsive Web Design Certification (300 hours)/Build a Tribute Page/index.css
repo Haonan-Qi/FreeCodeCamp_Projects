@@ -1,6 +1,17 @@
-html {
+:root {
     font-family: 'Montserrat', sans-serif;
     text-align: center;
+    font-size: 15px;
+    animation: fadeIn 2s ease-in 1 normal forwards;
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
 }
 
 header {
@@ -57,11 +68,21 @@ li {
     /* background-color: white; */
     margin-left: 10px;
     margin-right: 10px;
-    border: solid rgb(0, 0, 0, 0);
+    display: grid;
+    grid-template-columns: 25% 50% 25%;
+}
+
+.chinese-character {
+    writing-mode: vertical-lr;
+    text-orientation: upright;
+    font-size: 4rem;
+    justify-self: center;
+    font-family: FangSong;
+    letter-spacing:0.5rem;
 }
 
 #img-caption p {
-    margin: 10px auto;
+    margin: 2rem auto;
     max-width: 80vw;
 }
 
@@ -69,14 +90,77 @@ li {
     text-align: center;
     font-weight: 880;
     font-size: 25px;
+    animation: name duration timing-function delay iteration-count direction fill-mode;
 }
 
-#image {
+#portrait-of-jin {
     margin: auto;
-    display: block;
     border-radius: 10px;
-    max-width: 50%;
+    max-width: 100%;
     height: auto;
     margin-top: 1rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.33), 0 10px 10px rgba(0, 0, 0, 0.33);
+}
+
+.left-character span {
+	display: inline-block;
+} 
+
+.left-character span:nth-of-type(2) {
+	animation-delay: .5s;
+}
+.left-character span:nth-of-type(3) {
+	animation-delay: 1s;
+}
+.left-character span:nth-of-type(4) {
+	animation-delay: 1.5s;
+}
+.left-character span:nth-of-type(5) {
+	animation-delay: 2s;
+}
+.left-character span:nth-of-type(6) {
+	animation-delay: 2.5s;
+}
+.left-character span:nth-of-type(7) {
+	animation-delay: 3s;
+}
+
+
+.right-character span:nth-of-type(1) {
+	animation-delay: 3.5s;
+}
+.right-character span:nth-of-type(2) {
+	animation-delay: 4s;
+}
+.right-character span:nth-of-type(3) {
+	animation-delay: 4.5s;
+}
+.right-character span:nth-of-type(4) {
+	animation-delay: 5s;
+}
+.right-character span:nth-of-type(5) {
+	animation-delay: 5.5s;
+}
+.right-character span:nth-of-type(6) {
+	animation-delay: 6s;
+}
+.right-character span:nth-of-type(7) {
+	animation-delay: 6.5s;
+}
+
+.animate span {
+    font-weight: bold;
+	opacity: 0;
+	animation: revolveScale 4s forwards;
+}
+
+@keyframes revolveScale {
+	60% {
+        opacity: 0.6;
+	}
+
+	100% {
+
+		opacity: 1;
+	}
 }
